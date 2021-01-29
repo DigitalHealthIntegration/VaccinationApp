@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_r1/app_routing.dart';
-import 'package:flutter_r1/constants.dart';
 import 'package:flutter_r1/store.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -9,7 +8,7 @@ import 'reducers.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
   final store = Store<AppStore>(counterReducer, initialState: new AppStore());
 
   runApp(FlutterReduxApp(

@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_r1/constants.dart';
 import 'package:flutter_r1/containers/application_page.dart';
+import 'package:flutter_r1/controllers/google_sign_in.dart';
 import 'package:flutter_r1/controllers/utils.dart';
 import 'package:flutter_r1/theme.dart';
 import 'package:flutter_r1/widgets/buttons.dart';
@@ -49,8 +51,10 @@ class InitialLogin extends StatelessWidget {
               image: AssetImage("assets/google_logo.png"),
               height: 20,
             ),
-            onPressed: () {
-              RouteUtils.goToPage(context, AppRoutes.Location);
+            onPressed: () async {
+              GoogleSignInService googleSignInService = GoogleSignInService();
+              User user = await googleSignInService.signInWithGoogle();
+              print(user);
             },
           ),
         ],

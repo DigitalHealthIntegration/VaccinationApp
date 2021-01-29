@@ -2,13 +2,6 @@
   <library name="Dart Packages" type="DartPackagesLibraryType">
     <properties>
       <option name="packageNameToDirsMap">
-        <entry key="apple_sign_in">
-          <value>
-            <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/apple_sign_in-0.1.0/lib" />
-            </list>
-          </value>
-        </entry>
         <entry key="args">
           <value>
             <list>
@@ -418,7 +411,6 @@
       </option>
     </properties>
     <CLASSES>
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/apple_sign_in-0.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/args-1.6.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/asn1lib-0.8.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/async-2.5.0-nullsafety.1/lib" />

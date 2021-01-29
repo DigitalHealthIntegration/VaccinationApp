@@ -8,7 +8,7 @@ import 'package:flutter_r1/widgets/card.dart';
 import 'package:flutter_r1/widgets/gradients.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class VaccineRecognized extends StatelessWidget {
+class ScanResult extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ApplicationPage(
@@ -37,7 +37,7 @@ class VaccineRecognized extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  "MANUFACTURER",
+                  "PATIENT LOCATION",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColors.light,
@@ -45,7 +45,7 @@ class VaccineRecognized extends StatelessWidget {
                       fontSize: FontSize.medium),
                 ),
                 Text(
-                  "PFfizer",
+                  "Boston, MA",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColors.light,
@@ -56,7 +56,7 @@ class VaccineRecognized extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  "LOT",
+                  "PHASE",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColors.light,
@@ -64,7 +64,7 @@ class VaccineRecognized extends StatelessWidget {
                       fontSize: FontSize.medium),
                 ),
                 Text(
-                  "X3D621",
+                  "Essential Worker: Firefighter",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColors.light,
@@ -75,7 +75,7 @@ class VaccineRecognized extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  "LOCATION",
+                  "Age",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColors.light,
@@ -83,7 +83,26 @@ class VaccineRecognized extends StatelessWidget {
                       fontSize: FontSize.medium),
                 ),
                 Text(
-                  "Parsnip Health, Boston",
+                  "Under 65",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: AppColors.light,
+                      fontWeight: FontWeight.w500,
+                      fontSize: FontSize.large),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "COMBORDITY STATUS",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: AppColors.light,
+                      fontWeight: FontWeight.w400,
+                      fontSize: FontSize.medium),
+                ),
+                Text(
+                  "Yes",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColors.light,
@@ -104,10 +123,10 @@ class VaccineRecognized extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 35,
+                    height: 25,
                   ),
                   Text(
-                    "Confirm?",
+                    "Activate Coupon?",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColors.light,
@@ -115,7 +134,7 @@ class VaccineRecognized extends StatelessWidget {
                         fontSize: FontSize.title),
                   ),
                   SizedBox(
-                    height: 35,
+                    height: 25,
                   ),
                   Row(
                     children: [
@@ -145,7 +164,7 @@ class VaccineRecognized extends StatelessWidget {
                           style: TextStyle(
                               color: AppColors.light, fontSize: FontSize.large),
                           onPressed: () {
-                            RouteUtils.goToPage(context, AppRoutes.Home);
+                            RouteUtils.goToPage(context, AppRoutes.AdministerReady);
                           },
                           color: AppColors.positive,
                           leadingIcon: Icon(

@@ -48,34 +48,39 @@ class _ScanQrState extends State<ScanQr> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      width: 50.0,
-                      height: 50.0,
-                      decoration: new BoxDecoration(
-                        color: AppColors.blue,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Stack(children: [
-                        IconButton(
-                          icon: Icon(
-                            Icons.flash_on,
-                            size: 25,
-                            color: AppColors.textInputFill,
-                          ),
-                          onPressed: () {},
+                    InkWell(
+                      onTap: () {
+                        RouteUtils.goToPage(
+                            context, AppRoutes.VaccineRecognized);
+                      },
+                      child: Container(
+                        width: 50.0,
+                        height: 50.0,
+                        decoration: new BoxDecoration(
+                          color: AppColors.blue,
+                          shape: BoxShape.circle,
                         ),
-                        Icon(
-                          Icons.radio_button_unchecked,
-                          size: 50,
-                          color: AppColors.textInputFill,
-                        )
-                      ]),
+                        child: Stack(children: [
+                          IconButton(
+                            icon: Icon(
+                              Icons.flash_on,
+                              size: 25,
+                              color: AppColors.textInputFill,
+                            ),
+                            onPressed: () {},
+                          ),
+                          Icon(
+                            Icons.radio_button_unchecked,
+                            size: 50,
+                            color: AppColors.textInputFill,
+                          )
+                        ]),
+                      ),
                     ),
                     Button(
                       label: "  AUTO CAPTURE: ON  ",
                       onPressed: () {
-                        RouteUtils.goToPage(
-                            context, AppRoutes.VaccineRecognized);
+                        RouteUtils.goToPage(context, AppRoutes.ScanResult);
                       },
                       padding: EdgeInsets.all(4.0),
                       style: TextStyle(
