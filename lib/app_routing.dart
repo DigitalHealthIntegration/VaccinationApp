@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_r1/constants.dart';
+import 'package:flutter_r1/pages/initial/recognized.dart';
+import 'package:flutter_r1/pages/scan_qr.dart';
+import 'package:flutter_r1/pages/initial/administrator.dart';
+import 'package:flutter_r1/pages/initial/initial_login.dart';
+import 'package:flutter_r1/pages/initial/location.dart';
+import 'package:flutter_r1/theme.dart';
+
+class AppRouting extends StatelessWidget {
+  @override
+  MaterialApp build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: AppColors.primary,
+        accentColor: AppColors.secondary,
+        buttonColor: AppColors.primary,
+      ),
+      debugShowCheckedModeBanner: false,
+      initialRoute: AppRoutes.InitialLogin,
+      routes: {
+        AppRoutes.InitialLogin: (context) => InitialLogin(),
+        AppRoutes.Location: (context) => Location(),
+        AppRoutes.Administrator: (context) => Administrator(),
+        AppRoutes.ScanQr: (context) => ScanQr(),
+        AppRoutes.VaccineRecognized: (context) => VaccineRecognized(),
+      },
+    );
+  }
+}
