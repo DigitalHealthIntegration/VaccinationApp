@@ -4,10 +4,12 @@ import 'package:flutter_r1/containers/application_page.dart';
 import 'package:flutter_r1/controllers/qr_utils.dart';
 import 'package:flutter_r1/controllers/utils.dart';
 import 'package:flutter_r1/model/coupon_model.dart';
+import 'package:flutter_r1/store.dart';
 import 'package:flutter_r1/theme.dart';
 import 'package:flutter_r1/widgets/buttons.dart';
 import 'package:flutter_r1/widgets/card.dart';
 import 'package:flutter_r1/widgets/gradients.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class ScanResult extends StatelessWidget {
@@ -19,108 +21,111 @@ class ScanResult extends StatelessWidget {
       body: Stack(
         children: [
           Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  child: AppCard(
-                    elevation: 2,
-                    borderRadius: 2.0,
-                    padding: 0,
-                    body: QrImage(
-                      data: QrUtils.encodeQR(CouponModel(
-                              age: "65",
-                              city: "Bangalore",
-                              conditions: "nsdiasn",
-                              coupons: "500",
-                              id: "123",
-                              job: "Sfsa",
-                              phase: "1A",
-                              type: "coupon")
-                          .toJson()),
-                      version: QrVersions.auto,
+            child: StoreConnector<AppStore, CouponModel>(
+              converter: (store) => store.state.coupon,
+              builder: (context, coupon) => Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 105,
+                    width: 105,
+                    child: AppCard(
+                      elevation: 2,
+                      borderRadius: 2.0,
+                      padding: 0,
+                      body: QrImage(
+                        data: QrUtils.encodeQR(CouponModel(
+                                age: "65",
+                                city: "Bangalore",
+                                conditions: "nsdiasn",
+                                coupons: "500",
+                                id: "123",
+                                job: "Sfsa",
+                                phase: "1A",
+                                type: "coupon")
+                            .toJson()),
+                        version: QrVersions.auto,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "PATIENT LOCATION",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: AppColors.light,
-                      fontWeight: FontWeight.w400,
-                      fontSize: FontSize.medium),
-                ),
-                Text(
-                  "Boston, MA",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: AppColors.light,
-                      fontWeight: FontWeight.w500,
-                      fontSize: FontSize.large),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "PHASE",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: AppColors.light,
-                      fontWeight: FontWeight.w400,
-                      fontSize: FontSize.medium),
-                ),
-                Text(
-                  "Essential Worker: Firefighter",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: AppColors.light,
-                      fontWeight: FontWeight.w500,
-                      fontSize: FontSize.large),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Age",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: AppColors.light,
-                      fontWeight: FontWeight.w400,
-                      fontSize: FontSize.medium),
-                ),
-                Text(
-                  "Under 65",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: AppColors.light,
-                      fontWeight: FontWeight.w500,
-                      fontSize: FontSize.large),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "COMBORDITY STATUS",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: AppColors.light,
-                      fontWeight: FontWeight.w400,
-                      fontSize: FontSize.medium),
-                ),
-                Text(
-                  "Yes",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: AppColors.light,
-                      fontWeight: FontWeight.w500,
-                      fontSize: FontSize.large),
-                ),
-              ],
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "PATIENT LOCATION",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: AppColors.light,
+                        fontWeight: FontWeight.w400,
+                        fontSize: FontSize.medium),
+                  ),
+                  Text(
+                    coupon.city,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: AppColors.light,
+                        fontWeight: FontWeight.w500,
+                        fontSize: FontSize.large),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "PHASE",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: AppColors.light,
+                        fontWeight: FontWeight.w400,
+                        fontSize: FontSize.medium),
+                  ),
+                  Text(
+                    coupon.phase,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: AppColors.light,
+                        fontWeight: FontWeight.w500,
+                        fontSize: FontSize.large),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Age",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: AppColors.light,
+                        fontWeight: FontWeight.w400,
+                        fontSize: FontSize.medium),
+                  ),
+                  Text(
+                    coupon.age,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: AppColors.light,
+                        fontWeight: FontWeight.w500,
+                        fontSize: FontSize.large),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "COMBORDITY STATUS",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: AppColors.light,
+                        fontWeight: FontWeight.w400,
+                        fontSize: FontSize.medium),
+                  ),
+                  Text(
+                    coupon.conditions != null ? "Yes" : "No",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: AppColors.light,
+                        fontWeight: FontWeight.w500,
+                        fontSize: FontSize.large),
+                  ),
+                ],
+              ),
             ),
           ),
           Positioned(
@@ -157,7 +162,11 @@ class ScanResult extends StatelessWidget {
                           label: "No",
                           style: TextStyle(
                               color: AppColors.light, fontSize: FontSize.large),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                                AppRoutes.RecordingDose,
+                                ModalRoute.withName(AppRoutes.Home));
+                          },
                           color: AppColors.danger,
                           leadingIcon: Icon(
                             Icons.close,

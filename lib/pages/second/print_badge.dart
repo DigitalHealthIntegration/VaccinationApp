@@ -5,7 +5,6 @@ import 'package:flutter_r1/controllers/utils.dart';
 import 'package:flutter_r1/theme.dart';
 import 'package:flutter_r1/widgets/card.dart';
 import 'package:flutter_r1/widgets/gradients.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 class PrintBadge extends StatelessWidget {
   @override
@@ -26,26 +25,20 @@ class PrintBadge extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                   fontSize: FontSize.medium),
             ),
-            Transform.rotate(
-              angle: 40,
-              child: GestureDetector(
-                onTap: () {
-                  RouteUtils.goToPage(context, AppRoutes.PassKey);
-                },
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  child: AppCard(
-                    elevation: 2,
-                    borderRadius: 2.0,
-                    padding: 0,
-                    body: QrImage(
-                      data: "www.google.com",
-                      version: QrVersions.auto,
-                    ),
-                  ),
+            GestureDetector(
+              onTap: () {
+                RouteUtils.goToPage(context, AppRoutes.Badge);
+              },
+              child: Stack(alignment: Alignment.center, children: [
+                Image(
+                  image: AssetImage("assets/qrbadge.png"),
+                  height: 120,
                 ),
-              ),
+                Image(
+                  image: AssetImage("assets/topbadge.png"),
+                  height: 30,
+                ),
+              ]),
             ),
             SizedBox(height: 30),
             Text(
@@ -56,17 +49,23 @@ class PrintBadge extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                   fontSize: FontSize.medium),
             ),
-            Container(
-              height: 100,
-              width: 100,
+            GestureDetector(
+              onTap: () {
+                RouteUtils.goToPage(context, AppRoutes.Status);
+              },
               child: AppCard(
-                elevation: 2,
-                borderRadius: 2.0,
-                padding: 0,
-                body: QrImage(
-                  data: "www.google.com",
-                  version: QrVersions.auto,
-                ),
+                padding: 5,
+                borderRadius: 1,
+                body: Stack(alignment: Alignment.center, children: [
+                  Image(
+                    image: AssetImage("assets/qrstatus.png"),
+                    height: 100,
+                  ),
+                  Image(
+                    image: AssetImage("assets/topstatus.png"),
+                    height: 30,
+                  ),
+                ]),
               ),
             ),
             SizedBox(height: 30),
@@ -80,23 +79,30 @@ class PrintBadge extends StatelessWidget {
             ),
             Stack(children: [
               Container(
-                height: 100,
-                width: 100,
+                height: 110,
+                width: 110,
                 decoration: new BoxDecoration(
                   color: AppColors.light,
                   shape: BoxShape.circle,
                 ),
               ),
               Positioned(
-                left: 10,
-                top: 10,
-                child: Container(
-                  height: 80,
-                  width: 80,
-                  child: QrImage(
-                    data: "www.google.com",
-                    version: QrVersions.auto,
-                  ),
+                left: 16,
+                top: 16,
+                child: GestureDetector(
+                  onTap: () {
+                    RouteUtils.goToPage(context, AppRoutes.PassKey);
+                  },
+                  child: Stack(alignment: Alignment.center, children: [
+                    Image(
+                      image: AssetImage("assets/qrpasskey.png"),
+                      height: 78,
+                    ),
+                    Image(
+                      image: AssetImage("assets/toppasskey.png"),
+                      height: 30,
+                    ),
+                  ]),
                 ),
               ),
             ]),

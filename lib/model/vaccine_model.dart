@@ -1,29 +1,26 @@
 import 'dart:convert';
 
-VaccineModel vaccineModelFromJson(String str) => VaccineModel.fromJson(json.decode(str));
+VaccineModel vaccineModelFromJson(String str) =>
+    VaccineModel.fromJson(json.decode(str));
 
 String vaccineModelToJson(VaccineModel data) => json.encode(data.toJson());
 
 class VaccineModel {
-    VaccineModel({
-        this.id,
-        this.manufacturer,
-        this.lotNo,
-    });
+  VaccineModel({
+    this.manufacturer,
+    this.lotNo,
+  });
 
-    String id;
-    String manufacturer;
-    String lotNo;
+  String manufacturer;
+  String lotNo;
 
-    factory VaccineModel.fromJson(Map<String, dynamic> json) => VaccineModel(
-        id: json["id"],
+  factory VaccineModel.fromJson(Map<String, dynamic> json) => VaccineModel(
         manufacturer: json["manufacturer"],
         lotNo: json["lot_no"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
-        "id": id,
+  Map<String, dynamic> toJson() => {
         "manufacturer": manufacturer,
         "lot_no": lotNo,
-    };
+      };
 }

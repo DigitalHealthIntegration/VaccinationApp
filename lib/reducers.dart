@@ -7,6 +7,8 @@ AppStore counterReducer(AppStore state, dynamic action) {
   }
   else if (action is ActionUpdateVaccine){
     state.vaccine = action.vaccine;
+  } else if (action is ActionUpdateCoupon) {
+    state.coupon = action.coupon;
   }
   else if(action is ActionUpdateShareQrString){
     state.shareQrString = action.shareQrString;

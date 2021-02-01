@@ -73,6 +73,13 @@ flutter:
     - assets/google_logo.png
     - assets/private_key_info.key
     - assets/public_key_info.key
+    - assets/qrbadge.png
+    - assets/topbadge.png
+    - assets/qrpasskey.png
+    - assets/toppasskey.png
+    - assets/qrstatus.png
+    - assets/topstatus.png
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

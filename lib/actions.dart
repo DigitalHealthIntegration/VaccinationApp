@@ -15,3 +15,8 @@ class ActionUpdateShareQrString{
   String shareQrString;
   ActionUpdateShareQrString({this.shareQrString});
 }
+
+class ActionUpdateCoupon {
+  CouponModel coupon;
+  ActionUpdateCoupon({this.coupon});
+}

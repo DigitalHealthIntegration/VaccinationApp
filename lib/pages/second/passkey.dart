@@ -98,113 +98,116 @@ class Passkey extends StatelessWidget {
       appBarTitle: PageTitles.PassKey,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Name",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: AppColors.light,
-                  fontWeight: FontWeight.w300,
-                  fontSize: FontSize.medium),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          alignment: Alignment.center,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Text(
+                  "Name",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: AppColors.light,
+                      fontWeight: FontWeight.w300,
+                      fontSize: FontSize.medium),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextInput(
+                  onChange: (str) {
+                    pat_name = str;
+                  },
+                  placeholder: "Patient Name",
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Phone",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: AppColors.light,
+                      fontWeight: FontWeight.w300,
+                      fontSize: FontSize.medium),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextInput(
+                  onChange: (str) {
+                    pat_phone = str;
+                  },
+                  placeholder: "Phone",
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "DoB",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: AppColors.light,
+                      fontWeight: FontWeight.w300,
+                      fontSize: FontSize.medium),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextInput(
+                  onChange: (str) {
+                    pat_dob = str;
+                  },
+                  placeholder: "DoB",
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Salt",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: AppColors.light,
+                      fontWeight: FontWeight.w300,
+                      fontSize: FontSize.medium),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextInput(
+                  onChange: (str) {
+                   //pat_dob = str;
+                  },
+                  placeholder: "Salt",
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Button(
+                  onPressed: () async {
+                    if(pat_name!= null && pat_name.trim().length > 0){
+                      input_str += ("&name=")+pat_name;
+                    }
+                    if( pat_phone != null && pat_phone.trim().length > 0){
+                      input_str += ("&phone=")+pat_phone;
+                    }
+                    if(pat_dob != null &&  pat_dob.trim().length > 0){
+                      input_str += ("&dob=")+pat_dob;
+                    }
+                    if(pat_satl != null &&  pat_satl.trim().length > 0){
+                      input_str += ("&salt=")+pat_satl;
+                    }
+                    print("input_str ::: > "+input_str.substring(1));
+                    String qrString = await verifivationTest(input_str.substring(1));
+                    StoreUtils.dispatch(context, ActionUpdateShareQrString(shareQrString: qrString) );
+                    RouteUtils.goToPage(context, AppRoutes.ShareQr)
+                  },
+                  label: "Generate QR",
+                )
+              ],
             ),
-            SizedBox(
-              height: 10,
-            ),
-            TextInput(
-              onChange: (str) {
-                pat_name = str;
-              },
-              placeholder: "Patient Name",
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              "Phone",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: AppColors.light,
-                  fontWeight: FontWeight.w300,
-                  fontSize: FontSize.medium),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextInput(
-              onChange: (str) {
-                pat_phone = str;
-              },
-              placeholder: "Phone",
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              "DoB",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: AppColors.light,
-                  fontWeight: FontWeight.w300,
-                  fontSize: FontSize.medium),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextInput(
-              onChange: (str) {
-                pat_dob = str;
-              },
-              placeholder: "DoB",
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              "Salt",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: AppColors.light,
-                  fontWeight: FontWeight.w300,
-                  fontSize: FontSize.medium),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextInput(
-              onChange: (str) {
-                //pat_satl = new Random(36);
-              },
-              placeholder: "Salt",
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Button(
-              onPressed: () async  {
-              //pat_name, pat_phone, pat_dob, pat_satl;
-
-                if(pat_name!= null && pat_name.trim().length > 0){
-                  input_str += ("&name=")+pat_name;
-                }
-                if( pat_phone != null && pat_phone.trim().length > 0){
-                  input_str += ("&phone=")+pat_phone;
-                }
-                if(pat_dob != null &&  pat_dob.trim().length > 0){
-                  input_str += ("&dob=")+pat_dob;
-                }
-                if(pat_satl != null &&  pat_satl.trim().length > 0){
-                  input_str += ("&salt=")+pat_satl;
-                }
-                print("input_str ::: > "+input_str.substring(1));
-                String qrString = await verifivationTest(input_str.substring(1));
-                StoreUtils.dispatch(context, ActionUpdateShareQrString(shareQrString: qrString) );
-                RouteUtils.goToPage(context, AppRoutes.ShareQr);
-              },
-              label: "Generate QR",
-            )
-          ],
+          ),
         ),
       ),
     );
