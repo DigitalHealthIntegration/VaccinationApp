@@ -13,6 +13,8 @@ import 'package:simple_rsa/simple_rsa.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_r1/actions.dart';
+import 'dart:convert';
+
 
 class Badge extends StatelessWidget {
   String pat_date, pat_manuf, pat_product, pat_lot, pat_route, pat_site, pat_dosage, pat_doses, pat_next_dose, pat_vaccinator, pat_pass_key;
@@ -305,11 +307,17 @@ class Badge extends StatelessWidget {
                     if(pat_vaccinator!= null && pat_vaccinator.trim().length > 0){
                       badge_str += ("&vaccinator=")+pat_vaccinator;
                     }
-                    if(pat_pass_key!= null && pat_pass_key.trim().length > 0){
-                      badge_str += ("&vaccinee=")+pat_pass_key;
-                    }
+                    // if(pat_pass_key!= null && pat_pass_key.trim().length > 0){
+                    //   badge_str += ("&vaccinee=")+pat_pass_key;
+                    // }
+                    String finalString = "type=badge"+badge_str;
 
-                    String qrString = await getBadgeQrString("type=badge"+badge_str);
+                    //this is for pass key
+                    List<int> bytes = utf8.encode(finalString);
+                    String hash = sha256.convert(bytes).toString();
+                    finalString += ("&vaccinee=")+hash;
+
+                    String qrString = await getBadgeQrString(finalString);
                     StoreUtils.dispatch(context, ActionUpdateShareQrString(shareQrString: qrString) );
                     RouteUtils.goToPage(context, AppRoutes.ShareQr);
                   },

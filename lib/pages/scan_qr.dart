@@ -153,6 +153,10 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
     this.qrViewController = controller;
     controller.scannedDataStream.listen((scanData) {
       controller.pauseCamera();
+      print("!!!!!!!!!!!!!==");
+      print(scanData);
+      print("!!!!!!!!!!!!!==");
+      print(scanData.code);
       Map<String, dynamic> decodeMap = QrUtils.decodeQR(scanData.code);
       if (decodeMap == null) {
         print("Wrong Qr Code");

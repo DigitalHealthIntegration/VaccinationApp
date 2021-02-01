@@ -15,7 +15,10 @@ class QrUtils {
 
   static Map<String, dynamic> decodeQR(String payload) {
     try {
+      print(payload);
+      print("+++++++++++++++++++");
       String jsonEncryptStr = utf8.decode(base64.decode(payload));
+      print("++++++++++++++++++1+");
       Map<String, dynamic> jsonEncrypt = jsonDecode(jsonEncryptStr);
       if (!jsonEncrypt.containsKey("data") ||
           !jsonEncrypt.containsKey("token")) {

@@ -45,9 +45,9 @@ class Passkey extends StatelessWidget {
     print("message :: "+message);
 
     //String message = "type=passkey&name=mono&phone=0995404601&salt=v6rjkvirkj";
-    /*List<int> bytes = utf8.encode('type=passkey&name=mono&phone=0995404601&salt=v6rjkvirkj');
-    String hash = sha256.convert(bytes).toString();
-    print(">>> "+hash);*/
+    // List<int> bytes = utf8.encode('type=passkey&name=mono&phone=0995404601&salt=v6rjkvirkj');
+    // String hash = sha256.convert(bytes).toString();
+    // // print(">>> "+hash);
 
 
 
@@ -179,7 +179,7 @@ class Passkey extends StatelessWidget {
                   onChange: (str) {
                    //pat_dob = str;
                   },
-                  placeholder: "Salt",
+                  placeholder: pat_satl,
                 ),
                 SizedBox(
                   height: 50,
@@ -199,7 +199,11 @@ class Passkey extends StatelessWidget {
                       input_str += ("&salt=")+pat_satl;
                     }
 
-                    String qrString = await verifivationTest("type=passkey"+input_str);
+                    String finalString = "type=passkey"+input_str;
+                    // List<int> bytes = utf8.encode(finalString);
+                    // String hash = sha256.convert(bytes).toString();
+
+                    String qrString = await verifivationTest(finalString);
                     StoreUtils.dispatch(context, ActionUpdateShareQrString(shareQrString: qrString) );
                     RouteUtils.goToPage(context, AppRoutes.ShareQr);
                   },
