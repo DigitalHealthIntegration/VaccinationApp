@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_r1/actions.dart';
 import 'package:flutter_r1/constants.dart';
 import 'package:flutter_r1/containers/application_page.dart';
+import 'package:flutter_r1/controllers/qr_utils.dart';
 import 'package:flutter_r1/controllers/utils.dart';
+import 'package:flutter_r1/model/vaccine_model.dart';
 import 'package:flutter_r1/theme.dart';
 import 'package:flutter_r1/widgets/buttons.dart';
 import 'package:flutter_r1/widgets/gradients.dart';
@@ -16,6 +19,7 @@ class _ScanQrState extends State<ScanQr> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
   QRViewController qrViewController;
+  bool isAccepted = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +53,7 @@ class _ScanQrState extends State<ScanQr> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                      onTap: () {
-                        RouteUtils.goToPage(
-                            context, AppRoutes.VaccineRecognized);
-                      },
+                      onTap: () {},
                       child: Container(
                         width: 50.0,
                         height: 50.0,
@@ -80,6 +81,7 @@ class _ScanQrState extends State<ScanQr> {
                     Button(
                       label: "  AUTO CAPTURE: ON  ",
                       onPressed: () {
+                        qrViewController.pauseCamera();
                         RouteUtils.goToPage(context, AppRoutes.ScanResult);
                       },
                       padding: EdgeInsets.all(4.0),
@@ -116,21 +118,28 @@ class _ScanQrState extends State<ScanQr> {
                     ),
                   ],
                 ),
-                Icon(
-                  Icons.check_circle_rounded,
-                  size: 50,
-                  color: AppColors.positive,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "ACCEPTED!",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: AppColors.light,
-                      fontWeight: FontWeight.w400,
-                      fontSize: FontSize.medium),
+                Visibility(
+                  visible: isAccepted,
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.check_circle_rounded,
+                        size: 40,
+                        color: AppColors.positive,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        "ACCEPTED!",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: AppColors.light,
+                            fontWeight: FontWeight.w400,
+                            fontSize: FontSize.medium),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -143,7 +152,29 @@ class _ScanQrState extends State<ScanQr> {
   void _onQRViewCreated(QRViewController controller) {
     this.qrViewController = controller;
     controller.scannedDataStream.listen((scanData) {
-      print(scanData.code);
+      controller.pauseCamera();
+      Map<String, dynamic> decodeMap = QrUtils.decodeQR(scanData.code);
+      if (decodeMap != null) {
+        if (!decodeMap.containsKey("id")) return;
+        if (!decodeMap.containsKey("manufacturer")) return;
+        if (!decodeMap.containsKey("lot_no")) return;
+        setState(() {
+          isAccepted = true;
+        });
+        String id = decodeMap["id"];
+        String manufacturer = decodeMap["manufacturer"];
+        String lotNo = decodeMap["lot_no"];
+        StoreUtils.dispatch(
+            context,
+            ActionUpdateVaccine(
+                vaccine: VaccineModel(
+              id: id,
+              manufacturer: manufacturer,
+              lotNo: lotNo,
+            )));
+        RouteUtils.goToPage(context, AppRoutes.VaccineRecognized);
+        return;
+      }
     });
   }
 }

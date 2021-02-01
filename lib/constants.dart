@@ -37,3 +37,7 @@ class AppRoutes {
 class GlobalValues {
   static String qrCodeKey = "60'#(bpzHDLRSB;\"rA!k3?.wB'L@o#(U";
 }
+
+class SharedPreferenceKeys {
+  static String user = "user";
+}

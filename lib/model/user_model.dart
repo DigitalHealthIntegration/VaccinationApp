@@ -22,6 +22,6 @@ class UserModel {
 
     Map<String, dynamic> toJson() => {
         "name": name,
-        "location": location,
+        "location": location.toJson(),
     };
 }

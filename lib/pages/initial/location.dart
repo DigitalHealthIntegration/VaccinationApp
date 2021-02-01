@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_r1/actions.dart';
 import 'package:flutter_r1/constants.dart';
 import 'package:flutter_r1/containers/application_page.dart';
+import 'package:flutter_r1/controllers/shared_preference.dart';
 import 'package:flutter_r1/controllers/utils.dart';
 import 'package:flutter_r1/model/location_model.dart';
 import 'package:flutter_r1/model/user_model.dart';
@@ -82,12 +83,13 @@ class _LocationState extends State<Location> {
             Button(
               label: "Scan Vaccine Batch",
               onPressed: location != null
-                  ? () {
+                  ? () async {
+                      UserModel user =
+                          UserModel(name: store.user.name, location: location);
                       StoreUtils.dispatch(
-                          context,
-                          ActionUpdateUser(
-                              user: UserModel(
-                                  name: store.user.name, location: location)));
+                          context, ActionUpdateUser(user: user));
+                      await SharedPreferencesUtils.setString(
+                          SharedPreferenceKeys.user, userModelToJson(user));
                       RouteUtils.goToPage(context, AppRoutes.Administrator);
                     }
                   : null,

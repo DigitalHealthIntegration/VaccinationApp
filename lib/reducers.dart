@@ -5,6 +5,9 @@ AppStore counterReducer(AppStore state, dynamic action) {
   if (action is ActionUpdateUser) {
     state.user = action.user;
   }
+  else if (action is ActionUpdateVaccine){
+    state.vaccine = action.vaccine;
+  }
 
   return state;
 }
