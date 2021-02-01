@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_r1/constants.dart';
 import 'package:flutter_r1/containers/application_page.dart';
+import 'package:flutter_r1/controllers/utils.dart';
 import 'package:flutter_r1/theme.dart';
 import 'package:flutter_r1/widgets/card.dart';
 import 'package:flutter_r1/widgets/gradients.dart';
@@ -27,16 +28,21 @@ class PrintBadge extends StatelessWidget {
             ),
             Transform.rotate(
               angle: 40,
-              child: Container(
-                height: 100,
-                width: 100,
-                child: AppCard(
-                  elevation: 2,
-                  borderRadius: 2.0,
-                  padding: 0,
-                  body: QrImage(
-                    data: "www.google.com",
-                    version: QrVersions.auto,
+              child: GestureDetector(
+                onTap: () {
+                  RouteUtils.goToPage(context, AppRoutes.PassKey);
+                },
+                child: Container(
+                  height: 100,
+                  width: 100,
+                  child: AppCard(
+                    elevation: 2,
+                    borderRadius: 2.0,
+                    padding: 0,
+                    body: QrImage(
+                      data: "www.google.com",
+                      version: QrVersions.auto,
+                    ),
                   ),
                 ),
               ),

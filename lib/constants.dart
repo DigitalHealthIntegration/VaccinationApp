@@ -10,6 +10,10 @@ class PageTitles {
   static const String RecordingDose = "RECORDING DOSE";
   static const String ScanResult = "COUPON VALID";
   static const String BadgesPrinting = "BADGES PRINTING";
+  static const String PassKey = "PassKey";
+  static const String Badge = "Badge";
+  static const String Status = "Status";
+  static const String ShareQr = "ShareQr";
 }
 
 class AppRoutes {
@@ -32,6 +36,14 @@ class AppRoutes {
       "/home/recordingdose/couponscan/scanresult/administerready/badgeproduction";
   static const String BadgePrint =
       "/home/recordingdose/couponscan/scanresult/administerready/badgeproduction/badgeprint";
+  static const String PassKey =
+      "/home/recordingdose/couponscan/scanresult/administerready/badgeproduction/passkey";
+  static const String Badge =
+      "/home/recordingdose/couponscan/scanresult/administerready/badgeproduction/badge";
+  static const String Status =
+      "/home/recordingdose/couponscan/scanresult/administerready/badgeproduction/status";
+  static const String ShareQr =
+      "/home/recordingdose/couponscan/scanresult/administerready/badgeproduction/status/shareqr";
 }
 
 class GlobalValues {

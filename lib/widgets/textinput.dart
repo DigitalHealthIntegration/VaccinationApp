@@ -23,7 +23,7 @@ class TextInput extends StatefulWidget {
       this.placeholder,
       this.rows,
       this.borderRadius = 5.0,
-      this.fillColor = AppColors.gray,
+      this.fillColor = AppColors.textInputFill,
       this.inputTypePassword = false,
       this.errorText,
       this.maxLength,
