@@ -7,7 +7,6 @@ import 'package:flutter_r1/controllers/utils.dart';
 import 'package:flutter_r1/theme.dart';
 import 'package:flutter_r1/widgets/buttons.dart';
 import 'package:flutter_r1/widgets/gradients.dart';
-import 'package:flutter_r1/actions.dart';
 import 'package:flutter_r1/widgets/textinput.dart';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
@@ -15,6 +14,7 @@ import 'dart:async';
 import 'package:simple_rsa/simple_rsa.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_r1/actions.dart';
 
 class Passkey extends StatelessWidget {
 
@@ -45,9 +45,9 @@ class Passkey extends StatelessWidget {
     print("message :: "+message);
 
     //String message = "type=passkey&name=mono&phone=0995404601&salt=v6rjkvirkj";
-    /*List<int> bytes = utf8.encode('type=passkey&name=mono&phone=0995404601&salt=v6rjkvirkj');
-    String hash = sha256.convert(bytes).toString();
-    print(">>> "+hash);*/
+    // List<int> bytes = utf8.encode('type=passkey&name=mono&phone=0995404601&salt=v6rjkvirkj');
+    // String hash = sha256.convert(bytes).toString();
+    // // print(">>> "+hash);
 
 
 
@@ -179,7 +179,7 @@ class Passkey extends StatelessWidget {
                   onChange: (str) {
                    //pat_dob = str;
                   },
-                  placeholder: "Salt",
+                  placeholder: pat_satl,
                 ),
                 SizedBox(
                   height: 50,
@@ -198,8 +198,12 @@ class Passkey extends StatelessWidget {
                     if(pat_satl != null &&  pat_satl.trim().length > 0){
                       input_str += ("&salt=")+pat_satl;
                     }
-                    print("input_str ::: > "+input_str.substring(1));
-                    String qrString = await verifivationTest(input_str.substring(1));
+
+                    String finalString = "type=passkey"+input_str;
+                    // List<int> bytes = utf8.encode(finalString);
+                    // String hash = sha256.convert(bytes).toString();
+
+                    String qrString = await verifivationTest(finalString);
                     StoreUtils.dispatch(context, ActionUpdateShareQrString(shareQrString: qrString) );
                     RouteUtils.goToPage(context, AppRoutes.ShareQr);
                   },

@@ -1,5 +1,4 @@
-class QrUtils {
-  
+class QrUtils {  
   static dynamic getInfoFromQR(String couponString) {
     if (couponString.contains("/pub_key?"))
       couponString =
@@ -10,6 +9,7 @@ class QrUtils {
       String str = arr[i];
       var local = str.split("=");
       qrMap.putIfAbsent(local[0], () => local[1]);
+
     }
     return qrMap;
   }
