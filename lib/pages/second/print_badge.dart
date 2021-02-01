@@ -27,7 +27,7 @@ class PrintBadge extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                RouteUtils.goToPage(context, AppRoutes.PassKey);
+                RouteUtils.goToPage(context, AppRoutes.Badge);
               },
               child: Stack(alignment: Alignment.center, children: [
                 Image(
@@ -78,34 +78,32 @@ class PrintBadge extends StatelessWidget {
                   fontSize: FontSize.medium),
             ),
             Stack(children: [
-              GestureDetector(
-                onTap: () {
-                  RouteUtils.goToPage(context, AppRoutes.PassKey);
-                },
-                child: Container(
-                  height: 110,
-                  width: 110,
-                  decoration: new BoxDecoration(
-                    color: AppColors.light,
-                    shape: BoxShape.circle,
-                  ),
+              Container(
+                height: 110,
+                width: 110,
+                decoration: new BoxDecoration(
+                  color: AppColors.light,
+                  shape: BoxShape.circle,
                 ),
               ),
               Positioned(
                 left: 16,
                 top: 16,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                  Image(
-                    image: AssetImage("assets/qrpasskey.png"),
-                    height: 78,
-                  ),
-                  Image(
-                    image: AssetImage("assets/toppasskey.png"),
-                    height: 30,
-                  ),
-                ]),
+                child: GestureDetector(
+                  onTap: () {
+                    RouteUtils.goToPage(context, AppRoutes.PassKey);
+                  },
+                  child: Stack(alignment: Alignment.center, children: [
+                    Image(
+                      image: AssetImage("assets/qrpasskey.png"),
+                      height: 78,
+                    ),
+                    Image(
+                      image: AssetImage("assets/toppasskey.png"),
+                      height: 30,
+                    ),
+                  ]),
+                ),
               ),
             ]),
           ],
