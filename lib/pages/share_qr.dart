@@ -4,8 +4,8 @@ import 'package:flutter_r1/containers/application_page.dart';
 import 'package:flutter_r1/controllers/utils.dart';
 import 'package:flutter_r1/widgets/buttons.dart';
 import 'package:flutter_r1/widgets/card.dart';
-import 'package:flutter_r1/widgets/gradients.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+import 'package:flutter_r1/widgets/gradients.dart';import 'package:flutter_r1/store.dart';
+import 'package:qr_flutter/qr_flutter.dart';import 'package:flutter_redux/flutter_redux.dart';
 
 class ShareQr extends StatelessWidget {
   @override
@@ -15,33 +15,36 @@ class ShareQr extends StatelessWidget {
       appBarTitle: PageTitles.ShareQr,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 250,
-              width: 250,
-              child: AppCard(
-                elevation: 2,
-                borderRadius: 2.0,
-                padding: 0,
-                body: QrImage(
-                  data: "www.google.com",
-                  version: QrVersions.auto,
+        child: StoreConnector<AppStore,String>(
+          converter: (store) => store.state.shareQrString,
+          builder: (context,shareQrString) => Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: 250,
+                width: 250,
+                child: AppCard(
+                  elevation: 2,
+                  borderRadius: 2.0,
+                  padding: 0,
+                  body: QrImage(
+                    data: shareQrString,
+                    version: QrVersions.auto,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 80,
-            ),
-            Button(
-              label: "Share QR",
-              onPressed: () {
-                RouteUtils.goToPage(context, AppRoutes.CouponScan);
-              },
-              trailingIcon: Icon(Icons.share),
-            ),
-          ],
+              SizedBox(
+                height: 80,
+              ),
+              Button(
+                label: "Share QR",
+                onPressed: () {
+                  RouteUtils.goToPage(context, AppRoutes.CouponScan);
+                },
+                trailingIcon: Icon(Icons.share),
+              ),
+            ],
+          ),
         ),
       ),
     );
