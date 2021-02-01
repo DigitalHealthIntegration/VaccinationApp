@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_r1/constants.dart';
 import 'package:flutter_r1/containers/application_page.dart';
-import 'package:flutter_r1/controllers/qr_utils.dart';
 import 'package:flutter_r1/controllers/utils.dart';
-import 'package:flutter_r1/model/vaccine_model.dart';
 import 'package:flutter_r1/store.dart';
 import 'package:flutter_r1/theme.dart';
 import 'package:flutter_r1/widgets/buttons.dart';
@@ -34,10 +32,7 @@ class VaccineRecognized extends StatelessWidget {
                       borderRadius: 2.0,
                       padding: 0,
                       body: QrImage(
-                        data: QrUtils.encodeQR(VaccineModel(
-                                manufacturer: store.vaccine.manufacturer,
-                                lotNo: store.vaccine.lotNo)
-                            .toJson()),
+                        data: "sdjisahuifusafnauicniuasnias",
                         version: QrVersions.auto,
                       ),
                     ),

@@ -4,14 +4,14 @@ import 'package:flutter_r1/store.dart';
 AppStore counterReducer(AppStore state, dynamic action) {
   if (action is ActionUpdateUser) {
     state.user = action.user;
-  }
-  else if (action is ActionUpdateVaccine){
+  } else if (action is ActionUpdateVaccine) {
     state.vaccine = action.vaccine;
   } else if (action is ActionUpdateCoupon) {
     state.coupon = action.coupon;
-  }
-  else if(action is ActionUpdateShareQrString){
+  } else if (action is ActionUpdateShareQrString) {
     state.shareQrString = action.shareQrString;
+  } else if (action is ActionUpdateScanType) {
+    state.scanType = action.scanType;
   }
   return state;
 }

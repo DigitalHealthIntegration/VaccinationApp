@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_r1/actions.dart';
 import 'package:flutter_r1/constants.dart';
 import 'package:flutter_r1/containers/application_page.dart';
 import 'package:flutter_r1/controllers/utils.dart';
@@ -86,6 +87,8 @@ class Administrator extends StatelessWidget {
               Button(
                 label: "Ready to Scan",
                 onPressed: () {
+                  StoreUtils.dispatch(
+                      context, ActionUpdateScanType(scanType: "vaccine"));
                   RouteUtils.goToPage(context, AppRoutes.ScanQr);
                 },
                 trailingIcon: Icon(Icons.arrow_forward),

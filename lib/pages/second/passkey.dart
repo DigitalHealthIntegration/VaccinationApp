@@ -201,7 +201,7 @@ class Passkey extends StatelessWidget {
                     print("input_str ::: > "+input_str.substring(1));
                     String qrString = await verifivationTest(input_str.substring(1));
                     StoreUtils.dispatch(context, ActionUpdateShareQrString(shareQrString: qrString) );
-                    RouteUtils.goToPage(context, AppRoutes.ShareQr)
+                    RouteUtils.goToPage(context, AppRoutes.ShareQr);
                   },
                   label: "Generate QR",
                 )

@@ -34,16 +34,7 @@ class ScanResult extends StatelessWidget {
                       borderRadius: 2.0,
                       padding: 0,
                       body: QrImage(
-                        data: QrUtils.encodeQR(CouponModel(
-                                age: "65",
-                                city: "Bangalore",
-                                conditions: "nsdiasn",
-                                coupons: "500",
-                                id: "123",
-                                job: "Sfsa",
-                                phase: "1A",
-                                type: "coupon")
-                            .toJson()),
+                        data: "sahudbadniancuiasncnanc",
                         version: QrVersions.auto,
                       ),
                     ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_r1/actions.dart';
 import 'package:flutter_r1/constants.dart';
 import 'package:flutter_r1/containers/application_page.dart';
 import 'package:flutter_r1/controllers/utils.dart';
@@ -31,6 +32,8 @@ class RecordingDose extends StatelessWidget {
             Button(
               label: "Ready to scan",
               onPressed: () {
+                StoreUtils.dispatch(
+                    context, ActionUpdateScanType(scanType: "coupon"));
                 RouteUtils.goToPage(context, AppRoutes.CouponScan);
               },
               trailingIcon: Icon(Icons.arrow_forward),

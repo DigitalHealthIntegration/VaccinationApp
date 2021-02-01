@@ -6,9 +6,11 @@ import 'package:flutter_r1/controllers/qr_utils.dart';
 import 'package:flutter_r1/controllers/utils.dart';
 import 'package:flutter_r1/model/coupon_model.dart';
 import 'package:flutter_r1/model/vaccine_model.dart';
+import 'package:flutter_r1/store.dart';
 import 'package:flutter_r1/theme.dart';
 import 'package:flutter_r1/widgets/buttons.dart';
 import 'package:flutter_r1/widgets/gradients.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class ScanQr extends StatefulWidget {
@@ -21,6 +23,7 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
 
   QRViewController qrViewController;
   bool isAccepted = false;
+  String scanType;
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +34,23 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              flex: 5,
-              child: QRView(
-                key: qrKey,
-                onQRViewCreated: _onQRViewCreated,
-                overlay: QrScannerOverlayShape(
-                    overlayColor: Color.fromRGBO(0, 0, 0, 30),
-                    borderRadius: 0,
-                    borderLength: 150,
-                    borderWidth: 5,
-                    borderColor: AppColors.positive),
+            StoreConnector<AppStore, AppStore>(
+              onInitialBuild: (store) {
+                scanType = store.scanType;
+              },
+              converter: (store) => store.state,
+              builder: (context, store) => Expanded(
+                flex: 5,
+                child: QRView(
+                  key: qrKey,
+                  onQRViewCreated: _onQRViewCreated,
+                  overlay: QrScannerOverlayShape(
+                      overlayColor: Color.fromRGBO(0, 0, 0, 30),
+                      borderRadius: 0,
+                      borderLength: 150,
+                      borderWidth: 5,
+                      borderColor: AppColors.positive),
+                ),
               ),
             ),
             Expanded(
@@ -153,25 +162,30 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
     this.qrViewController = controller;
     controller.scannedDataStream.listen((scanData) {
       controller.pauseCamera();
-      Map<String, dynamic> decodeMap = QrUtils.decodeQR(scanData.code);
-      if (decodeMap == null) {
-        print("Wrong Qr Code");
+      dynamic decodeMap = QrUtils.getInfoFromQR(scanData.code);
+      print(decodeMap);
+      if (decodeMap == null || scanType == null) {
+        Utils.showAlertDialog("Wrong Qr", context, () {
+          controller.resumeCamera();
+        });
         return;
       }
       if (!decodeMap.containsKey("type")) {
-        print("Wrong Qr Code");
+        Utils.showAlertDialog("Wrong Qr", context, () {
+          controller.resumeCamera();
+        });
         return;
       }
-      String type = decodeMap["type"];
 
-      if (type == "vaccine") {
-        if (!decodeMap.containsKey("manufacturer")) return;
-        if (!decodeMap.containsKey("lot_no")) return;
+      String type = decodeMap["type"];
+      if (type == "vaccine" && scanType == "vaccine") {
+        if (!decodeMap.containsKey("Manuf")) return;
+        if (!decodeMap.containsKey("Lot")) return;
         setState(() {
           isAccepted = true;
         });
-        String manufacturer = decodeMap["manufacturer"];
-        String lotNo = decodeMap["lot_no"];
+        String manufacturer = decodeMap["Manuf"];
+        String lotNo = decodeMap["Lot"];
         StoreUtils.dispatch(
             context,
             ActionUpdateVaccine(
@@ -181,7 +195,7 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
             )));
         RouteUtils.goToPage(context, AppRoutes.VaccineRecognized);
         return;
-      } else if (type == "coupon") {
+      } else if (type == "coupon" && scanType == "coupon") {
         if (!decodeMap.containsKey("id")) return;
         if (!decodeMap.containsKey("coupons")) return;
         if (!decodeMap.containsKey("phase")) return;
@@ -213,6 +227,10 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
         RouteUtils.goToPage(context, AppRoutes.ScanResult);
         return;
       }
+      Utils.showAlertDialog("Wrong Qr", context, () {
+        controller.resumeCamera();
+      });
+      return;
     });
   }
 

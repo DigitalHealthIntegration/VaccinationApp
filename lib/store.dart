@@ -10,15 +10,16 @@ class AppStore {
   List<LocationModel> locations;
   VaccineModel vaccine;
   String shareQrString;
-  AppStore({@required this.locations, this.user, this.vaccine,this.shareQrString});
   CouponModel coupon;
+  String scanType;
 
-  AppStore(
-      {@required this.locations,
-      this.initialRoute,
-      this.user,
-      this.vaccine,
-      this.coupon,
-      this.shareQrString,
-      });
+  AppStore({
+    @required this.locations,
+    this.initialRoute,
+    this.user,
+    this.vaccine,
+    this.coupon,
+    this.shareQrString,
+    this.scanType = "vaccine",
+  });
 }

@@ -1,3 +1,4 @@
+import 'package:flutter_r1/model/coupon_model.dart';
 import 'package:flutter_r1/model/user_model.dart';
 import 'package:flutter_r1/model/vaccine_model.dart';
 
@@ -11,7 +12,7 @@ class ActionUpdateVaccine {
   ActionUpdateVaccine({this.vaccine});
 }
 
-class ActionUpdateShareQrString{
+class ActionUpdateShareQrString {
   String shareQrString;
   ActionUpdateShareQrString({this.shareQrString});
 }
@@ -19,4 +20,9 @@ class ActionUpdateShareQrString{
 class ActionUpdateCoupon {
   CouponModel coupon;
   ActionUpdateCoupon({this.coupon});
+}
+
+class ActionUpdateScanType {
+  String scanType;
+  ActionUpdateScanType({this.scanType});
 }
