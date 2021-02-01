@@ -25,8 +25,10 @@ void main() async {
   }
 
   List<LocationModel> locations = [
-    LocationModel(id: 1, hospitalName: "Wits RHI", city: "Johannesburg"),
-    LocationModel(id: 2, hospitalName: "Right to Care", city: "Johannesburg")
+    LocationModel(id: 1, hospitalName: "Parsnip Health1", city: "Boston"),
+    LocationModel(id: 2, hospitalName: "Parsnip Health2", city: "Boston"),
+    LocationModel(id: 3, hospitalName: "Parsnip Health3", city: "Boston"),
+    LocationModel(id: 4, hospitalName: "Parsnip Health4", city: "Boston")
   ];
   final store = Store<AppStore>(counterReducer,
       initialState: new AppStore(
