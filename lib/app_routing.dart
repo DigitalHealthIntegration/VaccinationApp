@@ -32,7 +32,7 @@ class AppRouting extends StatelessWidget {
           buttonColor: AppColors.primary,
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: initialRoute,
+        initialRoute: AppRoutes.InitialLogin,
         routes: {
           AppRoutes.InitialLogin: (context) => InitialLogin(),
           AppRoutes.Location: (context) => Location(),
