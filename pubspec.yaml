@@ -31,6 +31,9 @@ dependencies:
   encrypt: ^4.1.0
   country_code_picker: ^1.5.0
 
+  #SharedPreferences
+  shared_preferences: ^0.5.12+4
+
   #Flutter-Firebase
   firebase_core: ^0.5.0
   firebase_auth: ^0.18.1+1

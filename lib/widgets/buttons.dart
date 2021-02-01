@@ -22,7 +22,7 @@ class Button extends StatelessWidget {
   TextStyle style;
   Icon leadingIcon;
   Icon trailingIcon;
-  Image leadingImage;
+  Image trailingImage;
 
   Button(
       {@required this.label,
@@ -37,7 +37,7 @@ class Button extends StatelessWidget {
           fontWeight: FontWeight.bold, fontSize: FontSize.miniheader),
       this.leadingIcon,
       this.trailingIcon,
-      this.leadingImage,
+      this.trailingImage,
       this.type = ButtonType.button}) {
     if (type == ButtonType.button) {
       borderColor = borderColor ?? Colors.transparent;
@@ -75,12 +75,12 @@ class Button extends StatelessWidget {
             : MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
         children: [
-          if (leadingImage != null) Flexible(child: leadingImage),
           if (leadingIcon != null) Flexible(child: leadingIcon),
           Text(
             label,
             style: style,
           ),
+          if (trailingImage != null) Flexible(child: trailingImage),
           if (trailingIcon != null) Flexible(child: trailingIcon),
         ],
       ),
