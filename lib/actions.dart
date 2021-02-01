@@ -10,3 +10,8 @@ class ActionUpdateVaccine {
   VaccineModel vaccine;
   ActionUpdateVaccine({this.vaccine});
 }
+
+class ActionUpdateShareQrString{
+  String shareQrString;
+  ActionUpdateShareQrString({this.shareQrString});
+}
