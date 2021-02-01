@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_r1/app_routing.dart';
+import 'package:flutter_r1/constants.dart';
 import 'package:flutter_r1/controllers/shared_preference.dart';
 import 'package:flutter_r1/model/location_model.dart';
+import 'package:flutter_r1/model/user_model.dart';
 import 'package:flutter_r1/store.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -13,11 +15,22 @@ void main() async {
   await Firebase.initializeApp();
   await SharedPreferencesUtils.init();
 
+  String userFromPrefs =
+      SharedPreferencesUtils.getString(SharedPreferenceKeys.user);
+  String initialRoute = AppRoutes.InitialLogin;
+  UserModel user;
+  if (userFromPrefs != null) {
+    user = userModelFromJson(userFromPrefs);
+    initialRoute = AppRoutes.Home;
+  }
+
   List<LocationModel> locations = [
     LocationModel(id: 1, hospitalName: "Wits RHI", city: "Johannesburg"),
     LocationModel(id: 2, hospitalName: "Right to Care", city: "Johannesburg")
   ];
-  final store = Store<AppStore>(counterReducer, initialState: new AppStore(locations: locations));
+  final store = Store<AppStore>(counterReducer,
+      initialState: new AppStore(
+          locations: locations, initialRoute: initialRoute, user: user));
 
   runApp(FlutterReduxApp(
     title: 'Flutter App',

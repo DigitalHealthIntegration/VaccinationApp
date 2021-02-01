@@ -4,6 +4,7 @@ import 'package:flutter_r1/constants.dart';
 import 'package:flutter_r1/containers/application_page.dart';
 import 'package:flutter_r1/controllers/qr_utils.dart';
 import 'package:flutter_r1/controllers/utils.dart';
+import 'package:flutter_r1/model/coupon_model.dart';
 import 'package:flutter_r1/model/vaccine_model.dart';
 import 'package:flutter_r1/theme.dart';
 import 'package:flutter_r1/widgets/buttons.dart';
@@ -15,7 +16,7 @@ class ScanQr extends StatefulWidget {
   _ScanQrState createState() => _ScanQrState();
 }
 
-class _ScanQrState extends State<ScanQr> {
+class _ScanQrState extends State<ScanQr> with RouteAware {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
   QRViewController qrViewController;
@@ -53,7 +54,9 @@ class _ScanQrState extends State<ScanQr> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        qrViewController.toggleFlash();
+                      },
                       child: Container(
                         width: 50.0,
                         height: 50.0,
@@ -80,10 +83,7 @@ class _ScanQrState extends State<ScanQr> {
                     ),
                     Button(
                       label: "  AUTO CAPTURE: ON  ",
-                      onPressed: () {
-                        qrViewController.pauseCamera();
-                        RouteUtils.goToPage(context, AppRoutes.ScanResult);
-                      },
+                      onPressed: () {},
                       padding: EdgeInsets.all(4.0),
                       style: TextStyle(
                           fontSize: FontSize.small,
@@ -154,27 +154,72 @@ class _ScanQrState extends State<ScanQr> {
     controller.scannedDataStream.listen((scanData) {
       controller.pauseCamera();
       Map<String, dynamic> decodeMap = QrUtils.decodeQR(scanData.code);
-      if (decodeMap != null) {
-        if (!decodeMap.containsKey("id")) return;
+      if (decodeMap == null) {
+        print("Wrong Qr Code");
+        return;
+      }
+      if (!decodeMap.containsKey("type")) {
+        print("Wrong Qr Code");
+        return;
+      }
+      String type = decodeMap["type"];
+
+      if (type == "vaccine") {
         if (!decodeMap.containsKey("manufacturer")) return;
         if (!decodeMap.containsKey("lot_no")) return;
         setState(() {
           isAccepted = true;
         });
-        String id = decodeMap["id"];
         String manufacturer = decodeMap["manufacturer"];
         String lotNo = decodeMap["lot_no"];
         StoreUtils.dispatch(
             context,
             ActionUpdateVaccine(
                 vaccine: VaccineModel(
-              id: id,
               manufacturer: manufacturer,
               lotNo: lotNo,
             )));
         RouteUtils.goToPage(context, AppRoutes.VaccineRecognized);
         return;
+      } else if (type == "coupon") {
+        if (!decodeMap.containsKey("id")) return;
+        if (!decodeMap.containsKey("coupons")) return;
+        if (!decodeMap.containsKey("phase")) return;
+        if (!decodeMap.containsKey("city")) return;
+        if (!decodeMap.containsKey("age")) return;
+        if (!decodeMap.containsKey("conditions")) return;
+        if (!decodeMap.containsKey("job")) return;
+        setState(() {
+          isAccepted = true;
+        });
+        String id = decodeMap["id"];
+        String coupons = decodeMap["coupons"];
+        String phase = decodeMap["phase"];
+        String city = decodeMap["city"];
+        String age = decodeMap["age"];
+        String conditions = decodeMap["conditions"];
+        String job = decodeMap["job"];
+        StoreUtils.dispatch(
+            context,
+            ActionUpdateCoupon(
+                coupon: CouponModel(
+                    id: id,
+                    coupons: coupons,
+                    age: age,
+                    phase: phase,
+                    city: city,
+                    conditions: conditions,
+                    job: job)));
+        RouteUtils.goToPage(context, AppRoutes.ScanResult);
+        return;
       }
     });
+  }
+
+  @override
+  void dispose() {
+    qrViewController.dispose();
+    qrViewController = null;
+    super.dispose();
   }
 }

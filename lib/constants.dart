@@ -17,14 +17,12 @@ class PageTitles {
 }
 
 class AppRoutes {
-  static const String Root = "/root";
-
-  static const String InitialLogin = "/";
-  static const String Location = "/location";
-  static const String Administrator = "/location/administrator";
-  static const String ScanQr = "/location/administrator/scanqr";
+  static const String InitialLogin = "/root";
+  static const String Location = "/root/location";
+  static const String Administrator = "/root/location/administrator";
+  static const String ScanQr = "/root/location/administrator/scanqr";
   static const String VaccineRecognized =
-      "/location/administrator/scanqr/vaccinerecognized";
+      "/root/location/administrator/scanqr/vaccinerecognized";
 
   static const String Home = "/home";
   static const String RecordingDose = "/home/recordingdose";

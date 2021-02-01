@@ -35,7 +35,6 @@ class VaccineRecognized extends StatelessWidget {
                       padding: 0,
                       body: QrImage(
                         data: QrUtils.encodeQR(VaccineModel(
-                                id: store.vaccine.id,
                                 manufacturer: store.vaccine.manufacturer,
                                 lotNo: store.vaccine.lotNo)
                             .toJson()),
@@ -160,7 +159,7 @@ class VaccineRecognized extends StatelessWidget {
                           style: TextStyle(
                               color: AppColors.light, fontSize: FontSize.large),
                           onPressed: () {
-                            RouteUtils.goToPage(context, AppRoutes.Home);
+                            RouteUtils.setRootPage(context, AppRoutes.Home);
                           },
                           color: AppColors.positive,
                           leadingIcon: Icon(

@@ -7,21 +7,21 @@ UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
 String userModelToJson(UserModel data) => json.encode(data.toJson());
 
 class UserModel {
-    UserModel({
-        this.name,
-        this.location,
-    });
+  UserModel({
+    this.name,
+    this.location,
+  });
 
-    String name;
-    LocationModel location;
+  String name;
+  LocationModel location;
 
-    factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         name: json["name"],
-        location: json["location"],
-    );
+        location: LocationModel.fromJson(json["location"]),
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "name": name,
         "location": location.toJson(),
-    };
+      };
 }

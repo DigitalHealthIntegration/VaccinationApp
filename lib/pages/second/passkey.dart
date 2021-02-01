@@ -15,88 +15,93 @@ class Passkey extends StatelessWidget {
       appBarTitle: PageTitles.PassKey,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Name",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: AppColors.light,
-                  fontWeight: FontWeight.w300,
-                  fontSize: FontSize.medium),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          alignment: Alignment.center,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Text(
+                  "Name",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: AppColors.light,
+                      fontWeight: FontWeight.w300,
+                      fontSize: FontSize.medium),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextInput(
+                  onChange: (str) {},
+                  placeholder: "Patient Name",
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Phone",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: AppColors.light,
+                      fontWeight: FontWeight.w300,
+                      fontSize: FontSize.medium),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextInput(
+                  onChange: (str) {},
+                  placeholder: "Phone",
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "DoB",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: AppColors.light,
+                      fontWeight: FontWeight.w300,
+                      fontSize: FontSize.medium),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextInput(
+                  onChange: (str) {},
+                  placeholder: "DoB",
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Salt",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: AppColors.light,
+                      fontWeight: FontWeight.w300,
+                      fontSize: FontSize.medium),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextInput(
+                  onChange: (str) {},
+                  placeholder: "Salt",
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Button(
+                  onPressed: () {
+                    RouteUtils.goToPage(context, AppRoutes.ShareQr);
+                  },
+                  label: "Generate QR",
+                )
+              ],
             ),
-            SizedBox(
-              height: 10,
-            ),
-            TextInput(
-              onChange: (str) {},
-              placeholder: "Patient Name",
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              "Phone",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: AppColors.light,
-                  fontWeight: FontWeight.w300,
-                  fontSize: FontSize.medium),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextInput(
-              onChange: (str) {},
-              placeholder: "Phone",
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              "DoB",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: AppColors.light,
-                  fontWeight: FontWeight.w300,
-                  fontSize: FontSize.medium),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextInput(
-              onChange: (str) {},
-              placeholder: "DoB",
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              "Salt",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: AppColors.light,
-                  fontWeight: FontWeight.w300,
-                  fontSize: FontSize.medium),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextInput(
-              onChange: (str) {},
-              placeholder: "Salt",
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Button(
-              onPressed: () {
-                RouteUtils.goToPage(context, AppRoutes.ShareQr);
-              },
-              label: "Generate QR",
-            )
-          ],
+          ),
         ),
       ),
     );
