@@ -7,7 +7,6 @@ import 'package:flutter_r1/controllers/utils.dart';
 import 'package:flutter_r1/theme.dart';
 import 'package:flutter_r1/widgets/buttons.dart';
 import 'package:flutter_r1/widgets/gradients.dart';
-import 'package:flutter_r1/actions.dart';
 import 'package:flutter_r1/widgets/textinput.dart';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
@@ -15,6 +14,7 @@ import 'dart:async';
 import 'package:simple_rsa/simple_rsa.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_r1/actions.dart';
 
 class Passkey extends StatelessWidget {
 
@@ -198,8 +198,8 @@ class Passkey extends StatelessWidget {
                     if(pat_satl != null &&  pat_satl.trim().length > 0){
                       input_str += ("&salt=")+pat_satl;
                     }
-                    print("input_str ::: > "+input_str.substring(1));
-                    String qrString = await verifivationTest(input_str.substring(1));
+
+                    String qrString = await verifivationTest("type=passkey"+input_str);
                     StoreUtils.dispatch(context, ActionUpdateShareQrString(shareQrString: qrString) );
                     RouteUtils.goToPage(context, AppRoutes.ShareQr);
                   },
