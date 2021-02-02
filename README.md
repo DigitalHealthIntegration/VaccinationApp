@@ -12,7 +12,7 @@ Step 1: Create a Firebase Project
 
 Step 2: Configure your app to use Firebase
     1. Configure an Android app
-        * In the Add an app to get started section, click on Android Icon to add an Android app to Firebase.
+        * In the Add an app to get started section, click on Android Icon to add an Android app to Firebase.\n
         * On the next screen, enter your Android package name, App nickname & Debug signing certificate SHA-1 and click on Register App. Your package name is generally the applicationId in your app-level build.gradle file.
             Note : applicationId can be changed at android/app/build.gradle
         * Download the google-services.json file & place it in your project’s app root directory.
@@ -21,8 +21,8 @@ Step 2: Configure your app to use Firebase
         * App is ready to build on android devices.
     
     2. Configure an iOS app
-        * In the Add an app to get started section, click on iOS Icon to add an iOS app to Firebase.
-        * On the next screen, enter your iOS bundle ID & App nickname and click on Register App. You can find your Bundle Identifier in the General tab for your app’s primary target in Xcode.
+        * In the Add an app to get started section, click on iOS Icon to add an iOS app to Firebase.\n
+        * On the next screen, enter your iOS bundle ID & App nickname and click on Register App. You can find your Bundle Identifier in the General tab for your app’s primary target in Xcode.\n
         * Download the GoogleService-Info.plist file & move the GoogleService-Info.plist file you just downloaded into the root of your Xcode project and add it to all targets.
             path : ios/Runner/GoogleService-Info.plist
         * Run flutter packages get
@@ -33,7 +33,7 @@ Step 3: Configure your app for Google Sign In
         * Open GoogleService-Info.plist from [my_project]/ios/Runner directory of your project.
         * Copy REVERSED_CLIENT_ID key from GoogleService-Info.plist.
         * Paste the key into the [my_project]/ios/Runner/Info.plist file.
-        ```
+        ```xml
             <!-- Google Sign-in Section -->
             <key>CFBundleURLTypes</key>
             <array>
