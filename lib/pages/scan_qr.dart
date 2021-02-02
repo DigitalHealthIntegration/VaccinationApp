@@ -24,6 +24,7 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
 
   QRViewController qrViewController;
   bool isAccepted = false;
+  bool flashStatus = false;
   String scanType;
 
   @override
@@ -86,21 +87,26 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                      onTap: () {
+                      onTap: () async {
                         qrViewController.toggleFlash();
+                        bool status = await qrViewController.getFlashStatus();
+                        setState(() {
+                          flashStatus = status;
+                        });
                       },
                       child: Container(
                         width: 50.0,
                         height: 50.0,
                         decoration: new BoxDecoration(
-                          color: AppColors.blue,
+                          color:
+                              flashStatus ? AppColors.danger : AppColors.blue,
                           shape: BoxShape.circle,
                         ),
                         child: Stack(children: [
                           IconButton(
                             icon: Icon(
                               Icons.flash_on,
-                              size: 25,
+                              size: 20,
                               color: AppColors.textInputFill,
                             ),
                             onPressed: () {},
