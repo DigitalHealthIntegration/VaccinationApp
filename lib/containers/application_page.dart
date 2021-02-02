@@ -32,44 +32,24 @@ class ApplicationPage extends StatelessWidget {
   Scaffold build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      body: Stack(children: [
-        Container(
-          decoration: BoxDecoration(gradient: gradient),
-          padding: appBarTitle != null ? EdgeInsets.only(top: 100) : padding,
-          width: MediaQuery.of(context).size.width,
-          child: body,
-        ),
-        if (appBarTitle != null)
-          SafeArea(
-            top: true,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  if (!disableBack)
-                    IconButton(
-                      icon: Icon(
-                        appBarIcon,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      onPressed: () {
-                        RouteUtils.goBack(context);
-                      },
-                    ),
-                  Text(
-                    appBarTitle,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: FontSize.medium,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
+      appBar: appBarTitle != null
+          ? AppBar(
+              backgroundColor: Colors.transparent,
+              title: Text(
+                appBarTitle,
+                style: TextStyle(fontSize: FontSize.miniheader),
               ),
-            ),
-          )
-      ]),
+              elevation: 0,
+              centerTitle: true,
+            )
+          : null,
+      extendBodyBehindAppBar: true,
+      body: Container(
+        decoration: BoxDecoration(gradient: gradient),
+        padding: appBarTitle != null ? EdgeInsets.only(top: 100) : padding,
+        width: MediaQuery.of(context).size.width,
+        child: body,
+      ),
     );
   }
 }

@@ -10,10 +10,10 @@ class PageTitles {
   static const String RecordingDose = "RECORDING DOSE";
   static const String ScanResult = "COUPON VALID";
   static const String BadgesPrinting = "BADGES PRINTING";
-  static const String PassKey = "PassKey";
-  static const String Badge = "Badge";
-  static const String Status = "Status";
-  static const String ShareQr = "ShareQr";
+  static const String PassKey = "PASSKEY";
+  static const String Badge = "BADGE";
+  static const String Status = "STATUS";
+  static const String ShareQr = "SHARE QR";
 }
 
 class AppRoutes {
