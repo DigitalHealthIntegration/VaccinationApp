@@ -9,16 +9,16 @@ VaccinationApp
 - Click on Get started.
 - Create a new project by tapping on the Add project box.
 - Enter the Project name
-- Tap on Create project. Following this, Firebase will set up a new project for you. This will take just a minute.
+- Tap on Create project. Following this, Firebase will set up a new project for you.
 
 ### Step 2: Configure your app to use Firebase.
 
 #### 1. Configure an Android app.
 - In the Add an app to get started section, click on Android Icon to add an Android app to Firebase.
 - On the next screen, enter your Android package name, App nickname & Debug signing certificate SHA-1 and click on Register App. Your package name is generally the applicationId in your app-level build.gradle file.
-            Note : applicationId can be changed at android/app/build.gradle
+Note : applicationId can be changed at android/app/build.gradle
 - Download the google-services.json file & place it in your project’s app root directory.
-            path : android/app/google-services.json
+path : android/app/google-services.json
 - Run flutter packages get
 - App is ready to build on android devices
     
@@ -26,7 +26,7 @@ VaccinationApp
 - In the Add an app to get started section, click on iOS Icon to add an iOS app to Firebase.
 - On the next screen, enter your iOS bundle ID & App nickname and click on Register App. You can find your Bundle Identifier in the General tab for your app’s primary target in Xcode.
 - Download the GoogleService-Info.plist file & move the GoogleService-Info.plist file you just downloaded into the root of your Xcode project and add it to all targets.
-            path : ios/Runner/GoogleService-Info.plist
+path : ios/Runner/GoogleService-Info.plist
 -  Run flutter packages get
 -  App is ready to build on iOS devices.
 
