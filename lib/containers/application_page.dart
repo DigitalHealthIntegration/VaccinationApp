@@ -46,7 +46,7 @@ class ApplicationPage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       body: Container(
         decoration: BoxDecoration(gradient: gradient),
-        padding: appBarTitle != null ? EdgeInsets.only(top: 100) : padding,
+        padding: appBarTitle != null ? EdgeInsets.only(top: 90) : padding,
         width: MediaQuery.of(context).size.width,
         child: body,
       ),

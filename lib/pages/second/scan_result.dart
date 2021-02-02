@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_r1/constants.dart';
 import 'package:flutter_r1/containers/application_page.dart';
-import 'package:flutter_r1/controllers/qr_utils.dart';
 import 'package:flutter_r1/controllers/utils.dart';
 import 'package:flutter_r1/model/coupon_model.dart';
 import 'package:flutter_r1/store.dart';
@@ -20,21 +19,23 @@ class ScanResult extends StatelessWidget {
       appBarTitle: PageTitles.ScanResult,
       body: Stack(
         children: [
-          Center(
+          Container(
+            alignment: Alignment.topCenter,
+            width: MediaQuery.of(context).size.width,
             child: StoreConnector<AppStore, CouponModel>(
               converter: (store) => store.state.coupon,
               builder: (context, coupon) => Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    height: 105,
-                    width: 105,
+                    height: 80,
+                    width: 80,
                     child: AppCard(
                       elevation: 2,
                       borderRadius: 2.0,
                       padding: 0,
                       body: QrImage(
-                        data: "sahudbadniancuiasncnanc",
+                        data: "sahudbadniancuiaksdoaodomasncnanc",
                         version: QrVersions.auto,
                       ),
                     ),
@@ -59,7 +60,7 @@ class ScanResult extends StatelessWidget {
                         fontSize: FontSize.large),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   Text(
                     "PHASE",
@@ -78,7 +79,7 @@ class ScanResult extends StatelessWidget {
                         fontSize: FontSize.large),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   Text(
                     "AGE",
@@ -97,7 +98,7 @@ class ScanResult extends StatelessWidget {
                         fontSize: FontSize.large),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   Text(
                     "COMORBIDITY STATUS",
@@ -115,6 +116,9 @@ class ScanResult extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                         fontSize: FontSize.large),
                   ),
+                  SizedBox(
+                    height: 200,
+                  ),
                 ],
               ),
             ),
@@ -126,14 +130,13 @@ class ScanResult extends StatelessWidget {
             child: Container(
               decoration:
                   BoxDecoration(gradient: Gradients.confirmBottomGradient),
-              padding: EdgeInsets.all(20.0),
               child: Column(
                 children: [
                   SizedBox(
                     height: 25,
                   ),
                   Text(
-                    "Activate \nCoupon?",
+                    "Activate Coupon?",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColors.light,
@@ -141,7 +144,7 @@ class ScanResult extends StatelessWidget {
                         fontSize: FontSize.title),
                   ),
                   SizedBox(
-                    height: 25,
+                    height: 20,
                   ),
                   Row(
                     children: [
@@ -192,7 +195,7 @@ class ScanResult extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: 35,
+                    height: 25,
                   ),
                 ],
               ),
