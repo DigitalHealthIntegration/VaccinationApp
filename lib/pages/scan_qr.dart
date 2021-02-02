@@ -163,21 +163,24 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
     controller.scannedDataStream.listen((scanData) {
       controller.pauseCamera();
 
-      dynamic decodeMap = QrUtils.getInfoFromQR(scanData.code);
+      Map decodeMap = QrUtils.getInfoFromQR(scanData.code);
+      print(">>>>>>>>>>>>>>>>>"+scanType);
       print(decodeMap);
-      if (decodeMap == null || scanType == null) {
-        Utils.showAlertDialog("Wrong Qr", context, () {
+      if (decodeMap == null) {
+        Utils.showAlertDialog("Wrong Qr..", context, () {
           controller.resumeCamera();
         });
       }
       if (!decodeMap.containsKey("type")) {
-        Utils.showAlertDialog("Wrong Qr", context, () {
+        Utils.showAlertDialog("Wrong Qr.", context, () {
           controller.resumeCamera();
         });
         return;
       }
 
       String type = decodeMap["type"];
+     // print(">>>>>>type");
+      print(type);
       if (type == "vaccine" && scanType == "vaccine") {
         if (!decodeMap.containsKey("Manuf")) return;
         if (!decodeMap.containsKey("Lot")) return;
@@ -196,34 +199,34 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
         RouteUtils.goToPage(context, AppRoutes.VaccineRecognized);
         return;
       } else if (type == "coupon" && scanType == "coupon") {
-        if (!decodeMap.containsKey("id")) return;
-        if (!decodeMap.containsKey("coupons")) return;
-        if (!decodeMap.containsKey("phase")) return;
-        if (!decodeMap.containsKey("city")) return;
-        if (!decodeMap.containsKey("age")) return;
-        if (!decodeMap.containsKey("conditions")) return;
-        if (!decodeMap.containsKey("job")) return;
+        // if (!decodeMap.containsKey("id")) return;
+        // if (!decodeMap.containsKey("coupons")) return;
+        // if (!decodeMap.containsKey("phase")) return;
+        // if (!decodeMap.containsKey("city")) return;
+        // if (!decodeMap.containsKey("age")) return;
+        // if (!decodeMap.containsKey("conditions")) return;
+        // if (!decodeMap.containsKey("job")) return;
         setState(() {
           isAccepted = true;
         });
-        String id = decodeMap["id"];
-        String coupons = decodeMap["coupons"];
-        String phase = decodeMap["phase"];
-        String city = decodeMap["city"];
-        String age = decodeMap["age"];
-        String conditions = decodeMap["conditions"];
-        String job = decodeMap["job"];
+        String id = decodeMap.containsKey("id") ? decodeMap["id"] : "";
+        String coupons = decodeMap.containsKey("coupons") ? decodeMap["coupons"] : "";//decodeMap["coupons"];
+        String phase = decodeMap.containsKey("phase") ? decodeMap["phase"] : ""; //decodeMap["phase"];
+        String city = decodeMap.containsKey("city") ? decodeMap["city"] : ""; //decodeMap["city"];
+        String age = decodeMap.containsKey("age") ? decodeMap["age"] : ""; //decodeMap["age"];
+        String conditions = decodeMap.containsKey("conditions") ? decodeMap["conditions"] : ""; //decodeMap["conditions"];
+        String job = decodeMap.containsKey("job") ? decodeMap["job"] : ""; //decodeMap["job"];
         StoreUtils.dispatch(
             context,
             ActionUpdateCoupon(
                 coupon: CouponModel(
-                    id: id,
-                    coupons: coupons,
-                    age: age,
-                    phase: phase,
-                    city: city,
-                    conditions: conditions,
-                    job: job)));
+                    id: id ,
+                    coupons: coupons ,
+                    age: age ,
+                    phase: phase ,
+                    city: city ,
+                    conditions: conditions ,
+                    job:  job)));
         RouteUtils.goToPage(context, AppRoutes.ScanResult);
         return;
       }
