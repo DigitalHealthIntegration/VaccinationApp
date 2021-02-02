@@ -15,7 +15,7 @@ class BadgeProduction extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "How would the\npatient like to\nrecieve thier\n badges?",
+            "How would the\npatient like to\nrecieve their\n badges?",
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: AppColors.light,

@@ -305,7 +305,7 @@ class Badge extends StatelessWidget {
                   converter: (store) => store.state.passKey,
                   builder: (context, passkey) => TextInput(
                     value: passkey,
-                    readOnly: true,
+                    readOnly: false,
                     onChange: (str) {
                       pat_pass_key = str;
                     },

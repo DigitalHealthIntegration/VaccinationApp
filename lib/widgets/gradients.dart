@@ -5,7 +5,7 @@ class Gradients {
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       stops: [0.25, 0.85],
-      colors: [Color.fromRGBO(64, 88, 219, 1), Color.fromRGBO(4, 216, 222, 1)]);
+      colors: [Color.fromRGBO(0x40,0x51,0xDB, 1), Color.fromRGBO(00, 0xDB, 0xDE, 1)]);
 
   static LinearGradient get gradient2 => LinearGradient(
           begin: Alignment.topCenter,

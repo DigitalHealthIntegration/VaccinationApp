@@ -72,6 +72,7 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
                       overlayColor: Color.fromRGBO(0, 0, 0, 30),
                       borderRadius: 0,
                       borderLength: 150,
+                      cutOutSize: 300,
                       borderWidth: 5,
                       borderColor: AppColors.positive),
                 ),
