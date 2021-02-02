@@ -133,7 +133,7 @@ class ScanResult extends StatelessWidget {
                     height: 25,
                   ),
                   Text(
-                    "Activate Coupon?",
+                    "Activate \nCoupon?",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColors.light,

@@ -29,7 +29,7 @@ class Administrator extends StatelessWidget {
                 style: TextStyle(
                     color: AppColors.light,
                     fontWeight: FontWeight.w400,
-                    fontSize: FontSize.medium),
+                    fontSize: FontSize.small),
               ),
               Text(
                 user.name,
@@ -48,7 +48,7 @@ class Administrator extends StatelessWidget {
                 style: TextStyle(
                     color: AppColors.light,
                     fontWeight: FontWeight.w400,
-                    fontSize: FontSize.medium),
+                    fontSize: FontSize.small),
               ),
               Text(
                 user.location.hospitalName,
@@ -62,7 +62,7 @@ class Administrator extends StatelessWidget {
                 height: 100,
               ),
               Text(
-                "Scan the vaccine batch to be used today",
+                "Scan the \nvaccine batch to \nbe used today",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: AppColors.light,
@@ -73,7 +73,7 @@ class Administrator extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                "This becomes the dose info to be inserted into all badges for today",
+                "This becomes the dose info \nto be inserted into all \nbadges for today",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: AppColors.light,
@@ -82,7 +82,7 @@ class Administrator extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 40,
+                height: 60,
               ),
               Button(
                 label: "Ready to Scan",

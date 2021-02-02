@@ -61,12 +61,8 @@ class Passkey extends StatelessWidget {
         publicKey +
         "?" +
         message;
-    print(">>>>>>>>>>>>>>>>>>>" + uri);
 
     return uri;
-
-    // Future<String> getPubKey = getPublicKeyAndVerify(message,signature, publicKey);
-    // getPubKey.then((value) => print(value));
   }
 
   Future<String> loadPrivateKeyFromAsset() async {

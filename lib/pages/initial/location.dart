@@ -30,7 +30,7 @@ class _LocationState extends State<Location> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Welcome back\n${store.user.name}",
+              "Welcome back\n${store.user.name}!",
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: AppColors.light,
@@ -41,7 +41,7 @@ class _LocationState extends State<Location> {
               height: 15,
             ),
             Text(
-              "Please confirm your location for today",
+              "Please confirm your \nlocation for today",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: AppColors.light,
