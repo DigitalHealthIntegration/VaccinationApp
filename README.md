@@ -9,7 +9,7 @@ VaccinationApp
 - Click on Get started.
 - Create a new project by tapping on the Add project box.
 - Enter the Project name
-- Tap on Create project. Following this, Firebase will set up a new project for you.
+- Tap on Create project. Following the wizard will set up a new project for you.
 
 ### Step 2: Configure your app to use Firebase.
 
@@ -27,9 +27,9 @@ path : android/app/google-services.json
 - App is ready to build on android devices
     
 #### 2. Configure an iOS app
-- In the Add an app to get started section, click on iOS Icon to add an iOS app to Firebase.
+- Click on 'Add app' button to select a platform, click on iOS Icon to add an iOS app to Firebase.
 - On the next screen, enter your iOS bundle ID & App nickname and click on Register App. You can find your Bundle Identifier in the General tab for your app’s primary target in Xcode.
-- Download the GoogleService-Info.plist file & move the GoogleService-Info.plist file you just downloaded into the root of your Xcode project and add it to all targets.
+- Download the GoogleService-Info.plist file place it in the root of your Xcode project and add it to all targets.
 ```sh
 path : ios/Runner/GoogleService-Info.plist
 ```
