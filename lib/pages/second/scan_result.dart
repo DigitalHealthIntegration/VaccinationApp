@@ -81,7 +81,7 @@ class ScanResult extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    "Age",
+                    "AGE",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColors.light,
@@ -100,7 +100,7 @@ class ScanResult extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    "COMBORDITY STATUS",
+                    "COMORBIDITY STATUS",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColors.light,
