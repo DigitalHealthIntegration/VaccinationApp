@@ -112,7 +112,7 @@ class Status extends StatelessWidget {
 
                     String qrString = await getStatusQrString(finalString);
                     StoreUtils.dispatch(context, ActionUpdateShareQrString(shareQrString: qrString) );
-                    RouteUtils.goToPage(context, AppRoutes.ShareQr);
+                    RouteUtils.goToPage(context, AppRoutes.ShareQr,arguments: "Status");
                   },
                   label: "Generate QR",
                 )
