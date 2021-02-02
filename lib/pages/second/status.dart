@@ -109,7 +109,6 @@ class Status extends StatelessWidget {
                     String hash = sha256.convert(bytes).toString();
                     finalString += ("&vaccinee=")+hash;
 
-                    print("finalString :::::: "+finalString);
                     String qrString = await getStatusQrString(finalString);
                     StoreUtils.dispatch(context, ActionUpdateShareQrString(shareQrString: qrString) );
                     RouteUtils.goToPage(context, AppRoutes.ShareQr,arguments: "Status");

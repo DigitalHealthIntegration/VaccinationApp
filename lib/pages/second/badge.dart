@@ -100,7 +100,7 @@ class Badge extends StatelessWidget {
                   onChange: (str) {
                     pat_manuf = str;
                   },
-                  placeholder: "Manuf",
+                  placeholder: "Pfizer, Moderna, etc",
                 ),
                 SizedBox(
                   height: 10,
@@ -120,7 +120,7 @@ class Badge extends StatelessWidget {
                   onChange: (str) {
                     pat_product = str;
                   },
-                  placeholder: "Product",
+                  placeholder: "COVID-19",
                 ),
                 SizedBox(
                   height: 10,
@@ -140,7 +140,7 @@ class Badge extends StatelessWidget {
                   onChange: (str) {
                     pat_lot = str;
                   },
-                  placeholder: "Lot#",
+                  placeholder: "012L20A, ...",
                 ),
                 SizedBox(
                   height: 10,
@@ -160,7 +160,7 @@ class Badge extends StatelessWidget {
                   onChange: (str) {
                     pat_route  = str;
                   },
-                  placeholder: "Route",
+                  placeholder: "Intramuscular, Intranasal, Subcut, Oral, ...",
                 ),
                 SizedBox(
                   height: 10,
@@ -180,7 +180,7 @@ class Badge extends StatelessWidget {
                   onChange: (str) {
                     pat_site = str;
                   },
-                  placeholder: "Site",
+                  placeholder: "Right Arm, Left Arm, ...",
                 ),
                 SizedBox(
                   height: 10,
@@ -200,7 +200,7 @@ class Badge extends StatelessWidget {
                   onChange: (str) {
                     pat_dosage = str;
                   },
-                  placeholder: "Dosage",
+                  placeholder: "1.0ml, 0.5ml, ...",
                 ),
                 SizedBox(
                   height: 10,
@@ -220,7 +220,7 @@ class Badge extends StatelessWidget {
                   onChange: (str) {
                     pat_doses = str;
                   },
-                  placeholder: "Doses",
+                  placeholder: "1, 2, 3, ...",
                 ),
                 SizedBox(
                   height: 10,
@@ -240,7 +240,7 @@ class Badge extends StatelessWidget {
                   onChange: (str) {
                      pat_next_dose = str;
                   },
-                  placeholder: "Next Doses",
+                  placeholder: "21, 28, ...",
                 ),
                 SizedBox(
                   height: 10,
@@ -260,7 +260,7 @@ class Badge extends StatelessWidget {
                   onChange: (str) {
                     pat_vaccinator = str;
                   },
-                  placeholder: "Vaccinator",
+                  placeholder: "Pharmacy Name, City, ...",
                 ),
                 SizedBox(
                   height: 10,
@@ -280,7 +280,7 @@ class Badge extends StatelessWidget {
                   onChange: (str) {
                     pat_pass_key = str;
                   },
-                  placeholder: "Passkey",
+                  placeholder: "User Hash",
                 ),
                 SizedBox(
                   height: 10,

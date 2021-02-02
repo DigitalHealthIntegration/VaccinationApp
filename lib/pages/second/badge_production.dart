@@ -26,7 +26,7 @@ class BadgeProduction extends StatelessWidget {
             height: 80,
           ),
           Button(
-            label: "Print Badge",
+            label: "Print badge",
             onPressed: () {
               RouteUtils.goToPage(context, AppRoutes.BadgePrint);
             },
@@ -36,7 +36,7 @@ class BadgeProduction extends StatelessWidget {
             height: 15,
           ),
           Button(
-            label: "Email Badge",
+            label: "Email badge",
             onPressed: () {
               RouteUtils.goToPage(context, AppRoutes.BadgePrint);
             },

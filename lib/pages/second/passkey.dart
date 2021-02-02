@@ -66,12 +66,8 @@ class Passkey extends StatelessWidget {
         publicKey +
         "?" +
         message;
-    print(">>>>>>>>>>>>>>>>>>>" + uri);
 
     return uri;
-
-    // Future<String> getPubKey = getPublicKeyAndVerify(message,signature, publicKey);
-    // getPubKey.then((value) => print(value));
   }
 
   Future<String> loadPrivateKeyFromAsset() async {
@@ -151,7 +147,7 @@ class Passkey extends StatelessWidget {
                   onChange: (str) {
                     pat_phone = str;
                   },
-                  placeholder: "Phone",
+                  placeholder: "617 ..",
                 ),
                 SizedBox(
                   height: 10,

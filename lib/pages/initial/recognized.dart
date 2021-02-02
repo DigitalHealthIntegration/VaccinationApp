@@ -46,7 +46,7 @@ class VaccineRecognized extends StatelessWidget {
                     style: TextStyle(
                         color: AppColors.light,
                         fontWeight: FontWeight.w400,
-                        fontSize: FontSize.medium),
+                        fontSize: FontSize.small),
                   ),
                   Text(
                     store.vaccine.manufacturer,
@@ -65,7 +65,7 @@ class VaccineRecognized extends StatelessWidget {
                     style: TextStyle(
                         color: AppColors.light,
                         fontWeight: FontWeight.w400,
-                        fontSize: FontSize.medium),
+                        fontSize: FontSize.small),
                   ),
                   Text(
                     store.vaccine.lotNo,
@@ -84,7 +84,7 @@ class VaccineRecognized extends StatelessWidget {
                     style: TextStyle(
                         color: AppColors.light,
                         fontWeight: FontWeight.w400,
-                        fontSize: FontSize.medium),
+                        fontSize: FontSize.small),
                   ),
                   Text(
                     "${store.user.location.hospitalName}, ${store.user.location.city}",
