@@ -69,7 +69,7 @@ class Status extends StatelessWidget {
                   onChange: (str) {
                     pat_dose = str;
                   },
-                  placeholder: "Date",
+                  placeholder: "0, 1, 2",
                 ),
                 SizedBox(
                   height: 10,
@@ -89,7 +89,7 @@ class Status extends StatelessWidget {
                   onChange: (str) {
                     pat_passkey = str;
                   },
-                  placeholder: "Date",
+                  placeholder: "User Hash",
                 ),
                 SizedBox(
                   height: 50,
@@ -109,7 +109,7 @@ class Status extends StatelessWidget {
                     String hash = sha256.convert(bytes).toString();
                     finalString += ("&vaccinee=")+hash;
 
-
+                    print("finalString :::::: "+finalString);
                     String qrString = await getStatusQrString(finalString);
                     StoreUtils.dispatch(context, ActionUpdateShareQrString(shareQrString: qrString) );
                     RouteUtils.goToPage(context, AppRoutes.ShareQr,arguments: "Status");

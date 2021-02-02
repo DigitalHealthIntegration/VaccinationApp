@@ -1,5 +1,5 @@
 class QrUtils {  
-  static dynamic getInfoFromQR(String couponString) {
+  static Map getInfoFromQR(String couponString) {
     if (couponString.contains("/pub_key?"))
       couponString =
           couponString.substring(couponString.indexOf("/pub_key?") + 9);

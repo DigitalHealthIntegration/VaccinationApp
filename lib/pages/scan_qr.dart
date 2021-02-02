@@ -163,16 +163,16 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
     controller.scannedDataStream.listen((scanData) {
       controller.pauseCamera();
 
-      dynamic decodeMap = QrUtils.getInfoFromQR(scanData.code);
+      Map decodeMap = QrUtils.getInfoFromQR(scanData.code);
+      print(">>>>>>>>>>>>>>>>>"+scanType);
       print(decodeMap);
-      final string = "Wrong QR Code";
       if (decodeMap == null || scanType == null) {
-        Utils.showAlertDialog(string, context, () {
+        Utils.showAlertDialog("Wrong Qr", context, () {
           controller.resumeCamera();
         });
       }
       if (!decodeMap.containsKey("type")) {
-        Utils.showAlertDialog(string, context, () {
+        Utils.showAlertDialog("Wrong Qr", context, () {
           controller.resumeCamera();
         });
         return;
@@ -197,23 +197,23 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
         RouteUtils.goToPage(context, AppRoutes.VaccineRecognized);
         return;
       } else if (type == "coupon" && scanType == "coupon") {
-        if (!decodeMap.containsKey("id")) return;
-        if (!decodeMap.containsKey("coupons")) return;
-        if (!decodeMap.containsKey("phase")) return;
-        if (!decodeMap.containsKey("city")) return;
-        if (!decodeMap.containsKey("age")) return;
-        if (!decodeMap.containsKey("conditions")) return;
-        if (!decodeMap.containsKey("job")) return;
+        // if (!decodeMap.containsKey("id")) return;
+        // if (!decodeMap.containsKey("coupons")) return;
+        // if (!decodeMap.containsKey("phase")) return;
+        // if (!decodeMap.containsKey("city")) return;
+        // if (!decodeMap.containsKey("age")) return;
+        // if (!decodeMap.containsKey("conditions")) return;
+        // if (!decodeMap.containsKey("job")) return;
         setState(() {
           isAccepted = true;
         });
-        String id = decodeMap["id"];
-        String coupons = decodeMap["coupons"];
-        String phase = decodeMap["phase"];
-        String city = decodeMap["city"];
-        String age = decodeMap["age"];
-        String conditions = decodeMap["conditions"];
-        String job = decodeMap["job"];
+        String id = decodeMap.containsKey("id") ? decodeMap["id"] : "";
+        String coupons = decodeMap.containsKey("coupons") ? decodeMap["coupons"] : "";//decodeMap["coupons"];
+        String phase = decodeMap.containsKey("phase") ? decodeMap["phase"] : ""; //decodeMap["phase"];
+        String city = decodeMap.containsKey("city") ? decodeMap["city"] : ""; //decodeMap["city"];
+        String age = decodeMap.containsKey("age") ? decodeMap["age"] : ""; //decodeMap["age"];
+        String conditions = decodeMap.containsKey("conditions") ? decodeMap["conditions"] : ""; //decodeMap["conditions"];
+        String job = decodeMap.containsKey("job") ? decodeMap["job"] : ""; //decodeMap["job"];
         StoreUtils.dispatch(
             context,
             ActionUpdateCoupon(
@@ -228,7 +228,7 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
         RouteUtils.goToPage(context, AppRoutes.ScanResult);
         return;
       }
-      Utils.showAlertDialog(string, context, () {
+      Utils.showAlertDialog("Wrong Qr", context, () {
         controller.resumeCamera();
       });
       return;
