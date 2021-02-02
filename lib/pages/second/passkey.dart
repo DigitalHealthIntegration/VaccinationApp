@@ -59,9 +59,6 @@ class Passkey extends StatelessWidget {
 
     return uri;
 
-    // Future<String> getPubKey = getPublicKeyAndVerify(message,signature, publicKey);
-    // getPubKey.then((value) => print(value));
-
   }
   Future<String> loadPrivateKeyFromAsset() async {
     return await rootBundle.loadString('assets/private_key_info.key');
@@ -69,22 +66,7 @@ class Passkey extends StatelessWidget {
   Future<String> loadPublicKeyFromAsset() async {
     return await rootBundle.loadString('assets/public_key_info.key');
   }
-  getCuponInfoFromQR(String cupponQrString){
-  //  cupponQrString =  "healthpass:SHA256\4N2pSW4ipOFw3gDnQijAZwprF3tEwWtobe3clqxjM6Q7W+ahhw1Ks+3oznUwqlv9C86KOt7GzClpMiqgsBKB65JOtozJOMvz4N/0ZfjsT2pa7VllNDTnXBLKCc0sgQMF1w3HG0MHCTQwJwRUKqRRHjahfrYdvcOlUjhvoQ0lnVg=@vitorpamplona.com/vaccine-certificate-qrcode-generator/pub_key?type=status&vaccinee=56694fd8b482409c1c8e62aaf0d9e6952ca5ab4347959ab0a06fac51b8235c79";
-    String cuponData = cupponQrString.substring(cupponQrString.indexOf("/pub_key?")+9);
-    if(cuponData == null){
-      return;
-    }
-    Map qrMap = new Map();
-    var arr = cuponData.split("&");
-    for(var i=0; i< arr.length; i++){
-      String str = arr[i];
-      var local = str.split("=");
-      qrMap.putIfAbsent(local[0], () => local[1]);
-    }
-    print(qrMap);
 
-  }
   @override
   Widget build(BuildContext context) {
      Random random = new Random(36);
