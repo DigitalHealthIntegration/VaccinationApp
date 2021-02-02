@@ -108,7 +108,7 @@ class ScanResult extends StatelessWidget {
                         fontSize: FontSize.medium),
                   ),
                   Text(
-                    coupon.conditions != null ? "Yes" : "No",
+                    coupon.conditions == "" ? "No" : "Yes",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColors.light,

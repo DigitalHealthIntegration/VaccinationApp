@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_r1/app_routing.dart';
 import 'package:flutter_r1/constants.dart';
+import 'package:flutter_r1/controllers/google_sign_in.dart';
 import 'package:flutter_r1/controllers/shared_preference.dart';
 import 'package:flutter_r1/model/location_model.dart';
 import 'package:flutter_r1/model/user_model.dart';
@@ -12,8 +14,14 @@ import 'reducers.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp();
   await SharedPreferencesUtils.init();
+
+  GoogleSignInService googleSignInService = GoogleSignInService();
+  if (await googleSignInService.isSignedIn()) {
+    googleSignInService.signOutGoogle();
+  }
 
   String userFromPrefs =
       SharedPreferencesUtils.getString(SharedPreferenceKeys.user);

@@ -4,10 +4,12 @@ import 'package:flutter_r1/containers/application_page.dart';
 import 'package:flutter_r1/controllers/utils.dart';
 import 'package:flutter_r1/theme.dart';
 import 'package:flutter_r1/widgets/buttons.dart';
+import 'package:flutter_r1/widgets/date_picker.dart';
 import 'package:flutter_r1/widgets/gradients.dart';
 import 'package:flutter_r1/widgets/textinput.dart';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
+import 'package:intl/intl.dart';
 import 'dart:async';
 import 'package:simple_rsa/simple_rsa.dart';
 import 'package:http/http.dart' as http;
@@ -18,6 +20,8 @@ import 'dart:convert';
 
 class Badge extends StatelessWidget {
   String pat_date, pat_manuf, pat_product, pat_lot, pat_route, pat_site, pat_dosage, pat_doses, pat_next_dose, pat_vaccinator, pat_pass_key;
+
+  DateFormat dateFormat = DateFormat('yyyy-MM-dd');
 
   Future<String> getBadgeQrString(String message) async {
     String privateKey, publicKey;
@@ -66,12 +70,18 @@ class Badge extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                TextInput(
-                  onChange: (str) {
-                    pat_date = str;
-                  },
-                  placeholder: "Date",
-                ),
+                DatePicker(
+                    lastDate: DateTime(DateTime.now().year + 50),
+                    firstDate: DateTime(DateTime.now().year - 50),
+                    initialDate: DateTime.now(),
+                    filled: true,
+                    placeholder: "YYYY-MM-DD",
+                    dateFormat: dateFormat,
+                    initiallySelected: false,
+                    onDateChanged: (selectedDate) {
+                      pat_date = dateFormat.format(selectedDate);
+                      print(pat_date);
+                    }),
                 SizedBox(
                   height: 10,
                 ),
@@ -322,6 +332,9 @@ class Badge extends StatelessWidget {
                     RouteUtils.goToPage(context, AppRoutes.ShareQr,arguments: "Badge");
                   },
                   label: "Generate QR",
+                ),
+                SizedBox(
+                  height: 10,
                 )
               ],
             ),
