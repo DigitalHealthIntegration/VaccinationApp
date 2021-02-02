@@ -147,7 +147,7 @@ class Passkey extends StatelessWidget {
                   onChange: (str) {
                     pat_phone = str;
                   },
-                  placeholder: "Phone",
+                  placeholder: "617 ..",
                 ),
                 SizedBox(
                   height: 10,
