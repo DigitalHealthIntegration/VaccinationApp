@@ -14,7 +14,7 @@ VaccinationApp
 ### Step 2: Configure your app to use Firebase.
 
 #### 1. Configure an Android app.
-- In the Add an app to get started section, click on Android Icon to add an Android app to Firebase.
+- Click on 'Add app' button to select a platform, click on Android Icon to add for Android.
 - On the next screen, enter your Android package name, App nickname & Debug signing certificate SHA-1 and click on Register App. Your package name is generally the applicationId in your app-level build.gradle file.
 ```sh
 Note : applicationId can be changed at android/app/build.gradle
