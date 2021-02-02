@@ -213,8 +213,13 @@ class Passkey extends StatelessWidget {
                     }
 
                     String finalString = "type=passkey" + input_str;
-                    // List<int> bytes = utf8.encode(finalString);
-                    // String hash = sha256.convert(bytes).toString();
+
+                    // generating pass key and saving
+                    print("passkey"+finalString);
+                    List<int> bytes = utf8.encode(finalString);
+                    String pass_key_global = sha256.convert(bytes).toString();
+                    StoreUtils.dispatch(context, ActionUpdatePassKey(passKey: pass_key_global));
+
 
                     String qrString = await verifivationTest(finalString);
                     StoreUtils.dispatch(context,

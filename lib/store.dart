@@ -12,6 +12,7 @@ class AppStore {
   String shareQrString;
   CouponModel coupon;
   String scanType;
+  String passKey;
 
   AppStore({
     @required this.locations,
@@ -21,5 +22,6 @@ class AppStore {
     this.coupon,
     this.shareQrString,
     this.scanType = "vaccine",
+    this.passKey = "",
   });
 }

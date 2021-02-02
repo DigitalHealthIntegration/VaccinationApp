@@ -12,6 +12,8 @@ AppStore counterReducer(AppStore state, dynamic action) {
     state.shareQrString = action.shareQrString;
   } else if (action is ActionUpdateScanType) {
     state.scanType = action.scanType;
+  }else if(action is ActionUpdatePassKey){
+    state.passKey = action.passKey;
   }
   return state;
 }

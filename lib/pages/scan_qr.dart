@@ -229,6 +229,7 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
         // if (!decodeMap.containsKey("age")) return;
         // if (!decodeMap.containsKey("conditions")) return;
         // if (!decodeMap.containsKey("job")) return;
+        StoreUtils.dispatch(context, ActionUpdatePassKey(passKey: ""));
         setState(() {
           isAccepted = true;
         });

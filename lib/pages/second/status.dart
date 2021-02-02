@@ -14,6 +14,9 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_r1/actions.dart';
 import 'dart:convert';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_r1/store.dart';
+import 'package:flutter_r1/actions.dart';
 
 class Status extends StatelessWidget {
   String pat_dose, pat_passkey;
@@ -85,12 +88,21 @@ class Status extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                TextInput(
-                  onChange: (str) {
-                    pat_passkey = str;
-                  },
-                  placeholder: "User Hash",
-                ),
+
+            StoreConnector<AppStore, String>(
+              onInitialBuild: (passkey) {
+                pat_passkey = passkey;
+              },
+              converter: (store) => store.state.passKey,
+              builder: (context, passkey) => TextInput(
+                value: passkey,
+                readOnly: true,
+                onChange: (str) {
+                  pat_passkey = str;
+                },
+                placeholder: "User Hash",
+              ),
+            ),
                 SizedBox(
                   height: 50,
                 ),
@@ -105,9 +117,10 @@ class Status extends StatelessWidget {
                     //   status_str += ("&manuf=")+pat_passkey;
                     // }
                     String finalString = "type=status"+status_str;
-                    List<int> bytes = utf8.encode(finalString);
-                    String hash = sha256.convert(bytes).toString();
-                    finalString += ("&vaccinee=")+hash;
+                   /* List<int> bytes = utf8.encode(finalString);
+                    String hash = sha256.convert(bytes).toString();*/
+                   if(pat_passkey.length > 0)
+                    finalString += ("&vaccinee=")+pat_passkey;
 
                     String qrString = await getStatusQrString(finalString);
                     StoreUtils.dispatch(context, ActionUpdateShareQrString(shareQrString: qrString) );

@@ -28,3 +28,7 @@ class ActionUpdateScanType {
   String scanType;
   ActionUpdateScanType({this.scanType});
 }
+class ActionUpdatePassKey{
+  String passKey;
+  ActionUpdatePassKey({this.passKey});
+}

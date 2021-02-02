@@ -14,6 +14,7 @@ class TextInput extends StatefulWidget {
   final bool inputTypePassword;
   final String errorText;
   final int maxLength;
+  bool readOnly;
 
   TextInput(
       {@required this.onChange,
@@ -21,6 +22,7 @@ class TextInput extends StatefulWidget {
       this.onSubmit,
       this.autofocus,
       this.placeholder,
+        this.readOnly = false,
       this.rows,
       this.borderRadius = 5.0,
       this.fillColor = AppColors.textInputFill,
@@ -85,6 +87,7 @@ class _TextInputState extends State<TextInput> {
       onSubmitted: onSubmit,
       obscureText: widget.inputTypePassword,
       autofocus: autofocus,
+      readOnly: widget.readOnly,
       decoration: InputDecoration(
           contentPadding: const EdgeInsets.all(20.0),
           errorText: widget.errorText,
