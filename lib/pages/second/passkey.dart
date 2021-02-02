@@ -17,7 +17,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_r1/actions.dart';
 
 class Passkey extends StatelessWidget {
-  String pat_name, pat_phone, pat_dob, pat_satl;
+  String pat_name, pat_phone, pat_dob, pat_salt;
   String input_str = "";
   Future<String> getPublicKeyAndVerify(
       String message, String signture, String pubKey) async {
@@ -96,10 +96,9 @@ class Passkey extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Random random = new Random(36);
-    String randomNumber = random.nextDouble().toString();
-    pat_satl = randomNumber.toString().substring(3);
-    print(">>>>>>" + pat_satl);
+    pat_salt = Utils.generateRandom10();
+
+
 
     return ApplicationPage(
       gradient: Gradients.gradient1,
@@ -187,7 +186,7 @@ class Passkey extends StatelessWidget {
                   onChange: (str) {
                     //pat_dob = str;
                   },
-                  placeholder: pat_satl,
+                  placeholder: pat_salt,
                 ),
                 SizedBox(
                   height: 50,
@@ -203,8 +202,8 @@ class Passkey extends StatelessWidget {
                     if (pat_dob != null && pat_dob.trim().length > 0) {
                       input_str += ("&dob=") + pat_dob;
                     }
-                    if (pat_satl != null && pat_satl.trim().length > 0) {
-                      input_str += ("&salt=") + pat_satl;
+                    if (pat_salt != null && pat_salt.trim().length > 0) {
+                      input_str += ("&salt=") + pat_salt;
                     }
 
                     String finalString = "type=passkey" + input_str;

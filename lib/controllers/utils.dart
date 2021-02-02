@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_r1/store.dart';
@@ -30,6 +30,16 @@ class StoreUtils {
 }
 
 class Utils {
+
+  static String generateRandom10(){
+    const _chars1 = 'abcdefghijklmnopqrstuvwxyz1234567890';
+    Random _rnd = Random.secure();
+    String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+        length, (_) => _chars1.codeUnitAt(_rnd.nextInt(_chars1.length))));
+    String salt = getRandomString(10);
+    return salt;
+  }
+
   static void showAlertDialog(
       String message, BuildContext context, Function onCancel) {
     showDialog(

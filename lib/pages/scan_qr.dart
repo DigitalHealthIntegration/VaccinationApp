@@ -166,13 +166,14 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
       Map decodeMap = QrUtils.getInfoFromQR(scanData.code);
       print(">>>>>>>>>>>>>>>>>"+scanType);
       print(decodeMap);
+      final string = "Invalid QR";
       if (decodeMap == null || scanType == null) {
-        Utils.showAlertDialog("Wrong Qr", context, () {
+        Utils.showAlertDialog(string, context, () {
           controller.resumeCamera();
         });
       }
       if (!decodeMap.containsKey("type")) {
-        Utils.showAlertDialog("Wrong Qr", context, () {
+        Utils.showAlertDialog(string, context, () {
           controller.resumeCamera();
         });
         return;
@@ -228,7 +229,7 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
         RouteUtils.goToPage(context, AppRoutes.ScanResult);
         return;
       }
-      Utils.showAlertDialog("Wrong Qr", context, () {
+      Utils.showAlertDialog(string, context, () {
         controller.resumeCamera();
       });
       return;
