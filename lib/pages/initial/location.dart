@@ -65,6 +65,7 @@ class _LocationState extends State<Location> {
                       location = newValue;
                     });
                   },
+                  dropdownColor: AppColors.textInputFill,
                   hint: Text("Select Location"),
                   isExpanded: true,
                   items: store.locations.map<DropdownMenuItem<LocationModel>>(

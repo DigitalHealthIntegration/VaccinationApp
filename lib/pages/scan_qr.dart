@@ -166,21 +166,19 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
       Map decodeMap = QrUtils.getInfoFromQR(scanData.code);
       print(">>>>>>>>>>>>>>>>>"+scanType);
       print(decodeMap);
-      if (decodeMap == null) {
-        Utils.showAlertDialog("Wrong Qr..", context, () {
+      if (decodeMap == null || scanType == null) {
+        Utils.showAlertDialog("Wrong Qr", context, () {
           controller.resumeCamera();
         });
       }
       if (!decodeMap.containsKey("type")) {
-        Utils.showAlertDialog("Wrong Qr.", context, () {
+        Utils.showAlertDialog("Wrong Qr", context, () {
           controller.resumeCamera();
         });
         return;
       }
 
       String type = decodeMap["type"];
-     // print(">>>>>>type");
-      print(type);
       if (type == "vaccine" && scanType == "vaccine") {
         if (!decodeMap.containsKey("Manuf")) return;
         if (!decodeMap.containsKey("Lot")) return;
@@ -220,13 +218,13 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
             context,
             ActionUpdateCoupon(
                 coupon: CouponModel(
-                    id: id ,
-                    coupons: coupons ,
-                    age: age ,
-                    phase: phase ,
-                    city: city ,
-                    conditions: conditions ,
-                    job:  job)));
+                    id: id,
+                    coupons: coupons,
+                    age: age,
+                    phase: phase,
+                    city: city,
+                    conditions: conditions,
+                    job: job)));
         RouteUtils.goToPage(context, AppRoutes.ScanResult);
         return;
       }
