@@ -1,8 +1,8 @@
 class QrUtils {  
   static Map getInfoFromQR(String couponString) {
     if (couponString.contains("/pub_key?"))
-      couponString =
-          couponString.substring(couponString.indexOf("/pub_key?") + 9);
+      couponString = couponString.substring(couponString.indexOf("/pub_key?") + 9);
+    couponString = Uri.decodeFull(couponString);
     Map qrMap = new Map();
     var arr = couponString.split("&");
     for (var i = 0; i < arr.length; i++) {
