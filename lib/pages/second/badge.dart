@@ -319,7 +319,7 @@ class Badge extends StatelessWidget {
 
                     String qrString = await getBadgeQrString(finalString);
                     StoreUtils.dispatch(context, ActionUpdateShareQrString(shareQrString: qrString) );
-                    RouteUtils.goToPage(context, AppRoutes.ShareQr);
+                    RouteUtils.goToPage(context, AppRoutes.ShareQr,arguments: "Badge");
                   },
                   label: "Generate QR",
                 )

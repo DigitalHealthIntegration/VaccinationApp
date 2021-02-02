@@ -17,11 +17,11 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_r1/actions.dart';
 
 class Passkey extends StatelessWidget {
-
   String pat_name, pat_phone, pat_dob, pat_satl;
   String input_str = "";
-  Future<String> getPublicKeyAndVerify(String message,String signture,String pubKey) async {
-    final response =  await http.get("https://"+pubKey);
+  Future<String> getPublicKeyAndVerify(
+      String message, String signture, String pubKey) async {
+    final response = await http.get("https://" + pubKey);
 
     if (response.statusCode == 200) {
       var jsonResponse = response.body;
@@ -40,40 +40,66 @@ class Passkey extends StatelessWidget {
     privateKey = await loadPrivateKeyFromAsset();
     publicKey = await loadPublicKeyFromAsset();
     final signature = await signString(message, privateKey);
-    print("publicKey :-:"+publicKey);
-    print("signature  :: "+signature);
-    print("message :: "+message);
+    print("publicKey :-:" + publicKey);
+    print("signature  :: " + signature);
+    print("message :: " + message);
 
     //String message = "type=passkey&name=mono&phone=0995404601&salt=v6rjkvirkj";
     // List<int> bytes = utf8.encode('type=passkey&name=mono&phone=0995404601&salt=v6rjkvirkj');
     // String hash = sha256.convert(bytes).toString();
     // // print(">>> "+hash);
 
-
-
     String elemPref = "qr-coupon";
     String protocol = "healthpass";
     String crypto = "SHA256";
-    String uri = protocol+":"+crypto+"\\"+signature+"@"+publicKey+"?"+message;
-    print(">>>>>>>>>>>>>>>>>>>"+uri);
+    String uri = protocol +
+        ":" +
+        crypto +
+        "\\" +
+        signature +
+        "@" +
+        publicKey +
+        "?" +
+        message;
+    print(">>>>>>>>>>>>>>>>>>>" + uri);
 
     return uri;
 
+    // Future<String> getPubKey = getPublicKeyAndVerify(message,signature, publicKey);
+    // getPubKey.then((value) => print(value));
   }
+
   Future<String> loadPrivateKeyFromAsset() async {
     return await rootBundle.loadString('assets/private_key_info.key');
   }
+
   Future<String> loadPublicKeyFromAsset() async {
     return await rootBundle.loadString('assets/public_key_info.key');
   }
 
+  getCuponInfoFromQR(String cupponQrString) {
+    //  cupponQrString =  "healthpass:SHA256\4N2pSW4ipOFw3gDnQijAZwprF3tEwWtobe3clqxjM6Q7W+ahhw1Ks+3oznUwqlv9C86KOt7GzClpMiqgsBKB65JOtozJOMvz4N/0ZfjsT2pa7VllNDTnXBLKCc0sgQMF1w3HG0MHCTQwJwRUKqRRHjahfrYdvcOlUjhvoQ0lnVg=@vitorpamplona.com/vaccine-certificate-qrcode-generator/pub_key?type=status&vaccinee=56694fd8b482409c1c8e62aaf0d9e6952ca5ab4347959ab0a06fac51b8235c79";
+    String cuponData =
+        cupponQrString.substring(cupponQrString.indexOf("/pub_key?") + 9);
+    if (cuponData == null) {
+      return;
+    }
+    Map qrMap = new Map();
+    var arr = cuponData.split("&");
+    for (var i = 0; i < arr.length; i++) {
+      String str = arr[i];
+      var local = str.split("=");
+      qrMap.putIfAbsent(local[0], () => local[1]);
+    }
+    print(qrMap);
+  }
+
   @override
   Widget build(BuildContext context) {
-     Random random = new Random(36);
-     String randomNumber = random.nextDouble().toString();
-     pat_satl = randomNumber.toString().substring(3);
-     print(">>>>>>"+pat_satl);
-
+    Random random = new Random(36);
+    String randomNumber = random.nextDouble().toString();
+    pat_satl = randomNumber.toString().substring(3);
+    print(">>>>>>" + pat_satl);
 
     return ApplicationPage(
       gradient: Gradients.gradient1,
@@ -159,7 +185,7 @@ class Passkey extends StatelessWidget {
                 ),
                 TextInput(
                   onChange: (str) {
-                   //pat_dob = str;
+                    //pat_dob = str;
                   },
                   placeholder: pat_satl,
                 ),
@@ -168,26 +194,28 @@ class Passkey extends StatelessWidget {
                 ),
                 Button(
                   onPressed: () async {
-                    if(pat_name!= null && pat_name.trim().length > 0){
-                      input_str += ("&name=")+pat_name;
+                    if (pat_name != null && pat_name.trim().length > 0) {
+                      input_str += ("&name=") + pat_name;
                     }
-                    if( pat_phone != null && pat_phone.trim().length > 0){
-                      input_str += ("&phone=")+pat_phone;
+                    if (pat_phone != null && pat_phone.trim().length > 0) {
+                      input_str += ("&phone=") + pat_phone;
                     }
-                    if(pat_dob != null &&  pat_dob.trim().length > 0){
-                      input_str += ("&dob=")+pat_dob;
+                    if (pat_dob != null && pat_dob.trim().length > 0) {
+                      input_str += ("&dob=") + pat_dob;
                     }
-                    if(pat_satl != null &&  pat_satl.trim().length > 0){
-                      input_str += ("&salt=")+pat_satl;
+                    if (pat_satl != null && pat_satl.trim().length > 0) {
+                      input_str += ("&salt=") + pat_satl;
                     }
 
-                    String finalString = "type=passkey"+input_str;
+                    String finalString = "type=passkey" + input_str;
                     // List<int> bytes = utf8.encode(finalString);
                     // String hash = sha256.convert(bytes).toString();
 
                     String qrString = await verifivationTest(finalString);
-                    StoreUtils.dispatch(context, ActionUpdateShareQrString(shareQrString: qrString) );
-                    RouteUtils.goToPage(context, AppRoutes.ShareQr);
+                    StoreUtils.dispatch(context,
+                        ActionUpdateShareQrString(shareQrString: qrString));
+                    RouteUtils.goToPage(context, AppRoutes.ShareQr,
+                        arguments: "Passkey");
                   },
                   label: "Generate QR",
                 )

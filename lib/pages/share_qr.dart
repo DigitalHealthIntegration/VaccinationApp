@@ -17,6 +17,7 @@ class ShareQr extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dynamic qrType = ModalRoute.of(context).settings.arguments;
     return ApplicationPage(
       gradient: Gradients.gradient1,
       appBarTitle: PageTitles.ShareQr,
@@ -51,8 +52,11 @@ class ShareQr extends StatelessWidget {
                 onPressed: () async {
                   try {
                     File qrImage = await screenshotController.capture(
-                        delay: Duration(milliseconds: 10));
-                    await Share.shareFiles([qrImage.path], text: "Share QR");
+                      delay: Duration(milliseconds: 10),
+                      pixelRatio: 20.0
+                    );
+                    await Share.shareFiles([qrImage.path],
+                        text: "VaccinationApp: $qrType");
                   } catch (e) {
                     print(e);
                     return;

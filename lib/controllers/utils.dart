@@ -8,8 +8,9 @@ import 'package:flutter_r1/widgets/buttons.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 class RouteUtils {
-  static Future goToPage(BuildContext context, String route) {
-    return Navigator.pushNamed(context, route);
+  static Future goToPage(BuildContext context, String route,
+      {dynamic arguments}) {
+    return Navigator.pushNamed(context, route, arguments: arguments);
   }
 
   static Future setRootPage(BuildContext context, String route) {
@@ -29,8 +30,6 @@ class StoreUtils {
 }
 
 class Utils {
-
-
   static void showAlertDialog(
       String message, BuildContext context, Function onCancel) {
     showDialog(
