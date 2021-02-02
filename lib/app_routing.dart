@@ -20,6 +20,8 @@ import 'package:flutter_r1/theme.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 class AppRouting extends StatelessWidget {
+  static final RouteObserver<PageRoute> routeObserver =
+      RouteObserver<PageRoute>();
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppStore, String>(
@@ -51,6 +53,7 @@ class AppRouting extends StatelessWidget {
           AppRoutes.Status: (context) => Status(),
           AppRoutes.ShareQr: (context) => ShareQr(),
         },
+        navigatorObservers: [routeObserver],
       ),
     );
   }

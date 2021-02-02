@@ -1,11 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter_r1/constants.dart';
 import 'package:flutter_r1/containers/application_page.dart';
 import 'package:flutter_r1/controllers/utils.dart';
 import 'package:flutter_r1/theme.dart';
 import 'package:flutter_r1/widgets/buttons.dart';
+import 'package:flutter_r1/widgets/date_picker.dart';
 import 'package:flutter_r1/widgets/gradients.dart';
 import 'package:flutter_r1/widgets/textinput.dart';
 import 'dart:math';
@@ -17,7 +19,10 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_r1/actions.dart';
 
 class Passkey extends StatelessWidget {
+  DateFormat dateFormat = DateFormat('yyyy-MM-dd');
+
   String pat_name, pat_phone, pat_dob, pat_salt;
+
   String input_str = "";
   Future<String> getPublicKeyAndVerify(
       String message, String signture, String pubKey) async {
@@ -158,12 +163,17 @@ class Passkey extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                TextInput(
-                  onChange: (str) {
-                    pat_dob = str;
-                  },
-                  placeholder: "DoB",
-                ),
+                DatePicker(
+                    lastDate: DateTime(DateTime.now().year + 50),
+                    firstDate: DateTime(DateTime.now().year - 50),
+                    initialDate: DateTime.now(),
+                    filled: true,
+                    placeholder: "YYYY-MM-DD",
+                    dateFormat: dateFormat,
+                    initiallySelected: false,
+                    onDateChanged: (selectedDate) {
+                      pat_dob = dateFormat.format(selectedDate);
+                    }),
                 SizedBox(
                   height: 10,
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_r1/actions.dart';
+import 'package:flutter_r1/app_routing.dart';
 import 'package:flutter_r1/constants.dart';
 import 'package:flutter_r1/containers/application_page.dart';
 import 'package:flutter_r1/controllers/qr_utils.dart';
@@ -24,6 +25,28 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
   QRViewController qrViewController;
   bool isAccepted = false;
   String scanType;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    AppRouting.routeObserver.subscribe(this, ModalRoute.of(context));
+  }
+
+  @override
+  void didPushNext() {
+    if (qrViewController != null) {
+      qrViewController.pauseCamera();
+    }
+    super.didPushNext();
+  }
+
+  @override
+  void didPopNext() {
+    if (qrViewController != null) {
+      qrViewController.resumeCamera();
+    }
+    super.didPopNext();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -164,13 +187,14 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
       controller.pauseCamera();
 
       Map decodeMap = QrUtils.getInfoFromQR(scanData.code);
-      print(">>>>>>>>>>>>>>>>>"+scanType);
+      print(">>>>>>>>>>>>>>>>>" + scanType);
       print(decodeMap);
       final string = "Invalid QR";
       if (decodeMap == null || scanType == null) {
         Utils.showAlertDialog(string, context, () {
           controller.resumeCamera();
         });
+        return;
       }
       if (!decodeMap.containsKey("type")) {
         Utils.showAlertDialog(string, context, () {
@@ -209,12 +233,24 @@ class _ScanQrState extends State<ScanQr> with RouteAware {
           isAccepted = true;
         });
         String id = decodeMap.containsKey("id") ? decodeMap["id"] : "";
-        String coupons = decodeMap.containsKey("coupons") ? decodeMap["coupons"] : "";//decodeMap["coupons"];
-        String phase = decodeMap.containsKey("phase") ? decodeMap["phase"] : ""; //decodeMap["phase"];
-        String city = decodeMap.containsKey("city") ? decodeMap["city"] : ""; //decodeMap["city"];
-        String age = decodeMap.containsKey("age") ? decodeMap["age"] : ""; //decodeMap["age"];
-        String conditions = decodeMap.containsKey("conditions") ? decodeMap["conditions"] : ""; //decodeMap["conditions"];
-        String job = decodeMap.containsKey("job") ? decodeMap["job"] : ""; //decodeMap["job"];
+        String coupons = decodeMap.containsKey("coupons")
+            ? decodeMap["coupons"]
+            : ""; //decodeMap["coupons"];
+        String phase = decodeMap.containsKey("phase")
+            ? decodeMap["phase"]
+            : ""; //decodeMap["phase"];
+        String city = decodeMap.containsKey("city")
+            ? decodeMap["city"]
+            : ""; //decodeMap["city"];
+        String age = decodeMap.containsKey("age")
+            ? decodeMap["age"]
+            : ""; //decodeMap["age"];
+        String conditions = decodeMap.containsKey("conditions")
+            ? decodeMap["conditions"]
+            : ""; //decodeMap["conditions"];
+        String job = decodeMap.containsKey("job")
+            ? decodeMap["job"]
+            : ""; //decodeMap["job"];
         StoreUtils.dispatch(
             context,
             ActionUpdateCoupon(

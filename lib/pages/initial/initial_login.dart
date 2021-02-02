@@ -71,10 +71,6 @@ class InitialLogin extends StatelessWidget {
                     ActionUpdateUser(user: UserModel(name: user.displayName)));
                 RouteUtils.goToPage(context, AppRoutes.Location);
               }
-              print("-----------");
-
-             // readFromFile();
-              //verifivationTest();
             },
           ),
         ],

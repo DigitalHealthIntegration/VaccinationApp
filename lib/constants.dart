@@ -35,13 +35,13 @@ class AppRoutes {
   static const String BadgePrint =
       "/home/recordingdose/couponscan/scanresult/administerready/badgeproduction/badgeprint";
   static const String PassKey =
-      "/home/recordingdose/couponscan/scanresult/administerready/badgeproduction/passkey";
+      "/home/recordingdose/couponscan/scanresult/administerready/badgeproduction/badgeprint/passkey";
   static const String Badge =
-      "/home/recordingdose/couponscan/scanresult/administerready/badgeproduction/badge";
+      "/home/recordingdose/couponscan/scanresult/administerready/badgeproduction/badgeprint/badge";
   static const String Status =
-      "/home/recordingdose/couponscan/scanresult/administerready/badgeproduction/status";
+      "/home/recordingdose/couponscan/scanresult/administerready/badgeproduction/badgeprint/status";
   static const String ShareQr =
-      "/home/recordingdose/couponscan/scanresult/administerready/badgeproduction/status/shareqr";
+      "/home/recordingdose/couponscan/scanresult/administerready/badgeproduction/badgeprint/status/shareqr";
 }
 
 class GlobalValues {
