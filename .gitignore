@@ -22,3 +22,4 @@ doc/api/
 ios/Runner/GoogleService-Info.plist
 android/app/google-services.json
 *.lock
+services.tar
