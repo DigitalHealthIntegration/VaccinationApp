@@ -26,7 +26,7 @@ jobs:
     #- run: flutter analyze .
     
     # Run widget tests for our flutter project.
-    - run: flutter test
+    #- run: flutter test
     - run: |
         gpg --quiet --batch --yes --decrypt --passphrase="$FIREBASE_SECRET" \
         --output services.tar services.tar.gpg
