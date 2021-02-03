@@ -27,6 +27,14 @@ jobs:
     
     # Run widget tests for our flutter project.
     - run: flutter test
+    - run: |
+        mkdir $HOME/private
+        gpg --quiet --batch --yes --decrypt --passphrase="$FIREBASE_SECRET" \
+        --output $HOME/private/services.tar services.tar.gpg
+        tar xvf $HOME/private/services.tar
+        flutter build appbundle
+      env:
+        FIREBASE_SECRET: ${{ secrets.FIREBASE_SECRET }}
     
     # Build apk.
     - run: flutter build apk
