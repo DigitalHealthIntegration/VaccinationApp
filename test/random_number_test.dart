@@ -32,14 +32,8 @@ void main() {
     String salt1 = Utils.generateRandom10();
     String salt2 = Utils.generateRandom10();
 
-    expect(false, salt2==salt1);
+    expect(false, salt2 == salt1);
 
     Map m = QrUtils.getInfoFromQR("02181727");
-
-
-
   });
-
-
-
 }

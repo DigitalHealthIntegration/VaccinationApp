@@ -52,9 +52,7 @@ class ShareQr extends StatelessWidget {
                 onPressed: () async {
                   try {
                     File qrImage = await screenshotController.capture(
-                      delay: Duration(milliseconds: 10),
-                      pixelRatio: 3.0
-                    );
+                        delay: Duration(milliseconds: 10), pixelRatio: 3.0);
                     await Share.shareFiles([qrImage.path],
                         text: "VaccinationApp: $qrType");
                   } catch (e) {

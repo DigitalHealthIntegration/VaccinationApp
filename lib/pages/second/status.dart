@@ -26,24 +26,35 @@ class Status extends StatelessWidget {
     privateKey = await loadPrivateKeyFromAsset();
     publicKey = await loadPublicKeyFromAsset();
     final signature = await signString(message, privateKey);
-    print("publicKey :-:"+publicKey);
-    print("signature  :: "+signature);
-    print("message :: "+message);
+    print("publicKey :-:" + publicKey);
+    print("signature  :: " + signature);
+    print("message :: " + message);
 
     String elemPref = "qr-coupon";
     String protocol = "healthpass";
     String crypto = "SHA256";
-    String uri = protocol+":"+crypto+"\\"+signature+"@"+publicKey+"?"+message;
-    print(">>>>>>>uri status>>>>>>>>>>>>"+uri);
+    String uri = protocol +
+        ":" +
+        crypto +
+        "\\" +
+        signature +
+        "@" +
+        publicKey +
+        "?" +
+        message;
+    print(">>>>>>>uri status>>>>>>>>>>>>" + uri);
 
     return uri;
   }
+
   Future<String> loadPrivateKeyFromAsset() async {
     return await rootBundle.loadString('assets/private_key_info.key');
   }
+
   Future<String> loadPublicKeyFromAsset() async {
     return await rootBundle.loadString('assets/public_key_info.key');
   }
+
   @override
   Widget build(BuildContext context) {
     return ApplicationPage(
@@ -88,21 +99,20 @@ class Status extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-
-            StoreConnector<AppStore, String>(
-              onInitialBuild: (passkey) {
-                pat_passkey = passkey;
-              },
-              converter: (store) => store.state.passKey,
-              builder: (context, passkey) => TextInput(
-                value: passkey,
-                readOnly: false,
-                onChange: (str) {
-                  pat_passkey = str;
-                },
-                placeholder: "User Hash",
-              ),
-            ),
+                StoreConnector<AppStore, String>(
+                  onInitialBuild: (passkey) {
+                    pat_passkey = passkey;
+                  },
+                  converter: (store) => store.state.passKey,
+                  builder: (context, passkey) => TextInput(
+                    value: passkey,
+                    readOnly: false,
+                    onChange: (str) {
+                      pat_passkey = str;
+                    },
+                    placeholder: "User Hash",
+                  ),
+                ),
                 SizedBox(
                   height: 50,
                 ),
@@ -110,21 +120,23 @@ class Status extends StatelessWidget {
                   onPressed: () async {
                     String status_str = "";
 
-                    if(pat_dose!= null && pat_dose.trim().length > 0){
-                      status_str += ("&vaccinated=")+pat_dose;
+                    if (pat_dose != null && pat_dose.trim().length > 0) {
+                      status_str += ("&vaccinated=") + pat_dose;
                     }
                     // if(pat_passkey!= null && pat_passkey.trim().length > 0){
                     //   status_str += ("&manuf=")+pat_passkey;
                     // }
-                    String finalString = "type=status"+status_str;
-                   /* List<int> bytes = utf8.encode(finalString);
+                    String finalString = "type=status" + status_str;
+                    /* List<int> bytes = utf8.encode(finalString);
                     String hash = sha256.convert(bytes).toString();*/
-                   if(pat_passkey.length > 0)
-                    finalString += ("&vaccinee=")+pat_passkey;
+                    if (pat_passkey.length > 0)
+                      finalString += ("&vaccinee=") + pat_passkey;
 
                     String qrString = await getStatusQrString(finalString);
-                    StoreUtils.dispatch(context, ActionUpdateShareQrString(shareQrString: qrString) );
-                    RouteUtils.goToPage(context, AppRoutes.ShareQr,arguments: "Status");
+                    StoreUtils.dispatch(context,
+                        ActionUpdateShareQrString(shareQrString: qrString));
+                    RouteUtils.goToPage(context, AppRoutes.ShareQr,
+                        arguments: "Status");
                   },
                   label: "Generate QR",
                 )

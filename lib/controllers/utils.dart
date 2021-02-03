@@ -30,12 +30,12 @@ class StoreUtils {
 }
 
 class Utils {
-
-  static String generateRandom10(){
+  static String generateRandom10() {
     const _chars1 = 'abcdefghijklmnopqrstuvwxyz1234567890';
     Random _rnd = Random.secure();
-    String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
-        length, (_) => _chars1.codeUnitAt(_rnd.nextInt(_chars1.length))));
+    String getRandomString(int length) =>
+        String.fromCharCodes(Iterable.generate(
+            length, (_) => _chars1.codeUnitAt(_rnd.nextInt(_chars1.length))));
     String salt = getRandomString(10);
     return salt;
   }

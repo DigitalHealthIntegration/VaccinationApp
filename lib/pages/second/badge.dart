@@ -362,7 +362,7 @@ class Badge extends StatelessWidget {
                     if (pat_pass_key.length > 0) {
                       finalString += ("&vaccinee=") + pat_pass_key;
                     }
-                    print("finalString from badge : "+finalString);
+                    print("finalString from badge : " + finalString);
                     String qrString = await getBadgeQrString(finalString);
                     StoreUtils.dispatch(context,
                         ActionUpdateShareQrString(shareQrString: qrString));

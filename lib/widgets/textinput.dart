@@ -22,7 +22,7 @@ class TextInput extends StatefulWidget {
       this.onSubmit,
       this.autofocus,
       this.placeholder,
-        this.readOnly = false,
+      this.readOnly = false,
       this.rows,
       this.borderRadius = 5.0,
       this.fillColor = AppColors.textInputFill,

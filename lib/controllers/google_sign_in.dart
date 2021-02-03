@@ -4,8 +4,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 class GoogleSignInService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-  
-  static final GoogleSignInService _googleSignInService = GoogleSignInService._();
+
+  static final GoogleSignInService _googleSignInService =
+      GoogleSignInService._();
 
   factory GoogleSignInService() {
     return _googleSignInService;

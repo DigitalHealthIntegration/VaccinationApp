@@ -99,8 +99,6 @@ class Passkey extends StatelessWidget {
   Widget build(BuildContext context) {
     pat_salt = Utils.generateRandom10();
 
-
-
     return ApplicationPage(
       gradient: Gradients.gradient1,
       appBarTitle: PageTitles.PassKey,
@@ -215,11 +213,11 @@ class Passkey extends StatelessWidget {
                     String finalString = "type=passkey" + input_str;
 
                     // generating pass key and saving
-                    print("passkey"+finalString);
+                    print("passkey" + finalString);
                     List<int> bytes = utf8.encode(finalString);
                     String pass_key_global = sha256.convert(bytes).toString();
-                    StoreUtils.dispatch(context, ActionUpdatePassKey(passKey: pass_key_global));
-
+                    StoreUtils.dispatch(
+                        context, ActionUpdatePassKey(passKey: pass_key_global));
 
                     String qrString = await verifivationTest(finalString);
                     StoreUtils.dispatch(context,

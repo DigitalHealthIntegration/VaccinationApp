@@ -20,7 +20,6 @@ import 'package:simple_rsa/simple_rsa.dart';
 import 'package:http/http.dart' as http;
 
 class InitialLogin extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return ApplicationPage(
