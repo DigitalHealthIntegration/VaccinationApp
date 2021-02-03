@@ -2,7 +2,7 @@ name: Flutter
 on:
   push:
     branches:
-    - master
+    - main
 
 jobs:
 
@@ -15,7 +15,7 @@ jobs:
         java-version: '12.x'
     - uses: subosito/flutter-action@v1
       with:
-          channel: 'beta'
+          channel: 'stable'
    # Get flutter dependencies.
     - run: flutter pub get
     
@@ -32,7 +32,7 @@ jobs:
     - run: flutter build apk
     
     # Upload generated apk to the artifacts.
-      uses: actions/upload-artifact@master
+      uses: actions/upload-artifact@main
       with:
         name: apk-release
         path: build/app/outputs/bundle/release/app-release.apk
