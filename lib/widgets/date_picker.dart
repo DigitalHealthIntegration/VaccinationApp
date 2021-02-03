@@ -13,14 +13,14 @@ class DatePicker extends StatefulWidget {
   final Icon prefixIcon;
   final Icon suffixIcon;
   final String placeholder;
-  String errorText;
-  TextAlign textAlign;
-  double borderRadius;
-  BorderStyle borderStyle;
-  bool filled;
-  Color fillColor;
-  bool initiallySelected;
-  bool initiallySelectedFirst;
+  final String errorText;
+  final TextAlign textAlign;
+  final double borderRadius;
+  final BorderStyle borderStyle;
+  final bool filled;
+  final Color fillColor;
+  final bool initiallySelected;
+  final bool initiallySelectedFirst;
 
   DatePicker(
       {Key key,
@@ -34,22 +34,14 @@ class DatePicker extends StatefulWidget {
       @required this.firstDate,
       @required this.initialDate,
       @required this.onDateChanged,
-      this.textAlign,
-      this.borderRadius,
+      this.textAlign = TextAlign.left,
+      this.borderRadius = 4.0, 
       this.errorText,
-      this.borderStyle,
-      this.filled,
-      this.initiallySelected,
-      this.initiallySelectedFirst,
-      this.fillColor}) {
-    textAlign ??= TextAlign.left;
-    borderRadius ??= 4.0;
-    borderStyle ??= BorderStyle.none;
-    filled ??= false;
-    fillColor ??= AppColors.textInputFill;
-    initiallySelected ??= true;
-    initiallySelectedFirst ??= false;
-  }
+      this.borderStyle = BorderStyle.none,
+      this.filled = false,
+      this.initiallySelected = true,
+      this.initiallySelectedFirst = false,
+      this.fillColor = AppColors.textInputFill});
 
   @override
   _DatePicker createState() => _DatePicker(this.initialDate);

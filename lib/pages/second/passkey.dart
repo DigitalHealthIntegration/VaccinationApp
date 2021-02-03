@@ -10,7 +10,6 @@ import 'package:flutter_r1/widgets/buttons.dart';
 import 'package:flutter_r1/widgets/date_picker.dart';
 import 'package:flutter_r1/widgets/gradients.dart';
 import 'package:flutter_r1/widgets/textinput.dart';
-import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'dart:async';
 import 'package:simple_rsa/simple_rsa.dart';
@@ -54,7 +53,7 @@ class Passkey extends StatelessWidget {
     // String hash = sha256.convert(bytes).toString();
     // // print(">>> "+hash);
 
-    String elemPref = "qr-coupon";
+    // String elemPref = "qr-coupon";
     String protocol = "healthpass";
     String crypto = "SHA256";
     String uri = protocol +

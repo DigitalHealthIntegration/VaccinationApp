@@ -14,7 +14,7 @@ class TextInput extends StatefulWidget {
   final bool inputTypePassword;
   final String errorText;
   final int maxLength;
-  bool readOnly;
+  final bool readOnly;
 
   TextInput(
       {@required this.onChange,

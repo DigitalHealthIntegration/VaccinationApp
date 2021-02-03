@@ -8,6 +8,7 @@ enum ButtonType {
   link // looks like link
 }
 
+// ignore: must_be_immutable
 class Button extends StatelessWidget {
   final String label;
   final Function onPressed;

@@ -7,17 +7,13 @@ import 'package:flutter_r1/widgets/buttons.dart';
 import 'package:flutter_r1/widgets/date_picker.dart';
 import 'package:flutter_r1/widgets/gradients.dart';
 import 'package:flutter_r1/widgets/textinput.dart';
-import 'dart:math';
-import 'package:crypto/crypto.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
 import 'package:simple_rsa/simple_rsa.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_r1/store.dart';
 import 'package:flutter_r1/actions.dart';
-import 'dart:convert';
 
 class Badge extends StatelessWidget {
   String pat_date,

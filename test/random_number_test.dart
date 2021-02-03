@@ -5,12 +5,8 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
 //import 'package:flutter_r1/main.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_r1/controllers/qr_utils.dart';
-import 'dart:math';
-import 'package:flutter_r1/controllers/utils.dart';
 
 void main() {
   testWidgets('Random number and QR test', (WidgetTester tester) async {
@@ -29,11 +25,11 @@ void main() {
     // expect(find.text('0'), findsNothing);
     // expect(find.text('1'), findsOneWidget);
 
-    String salt1 = Utils.generateRandom10();
-    String salt2 = Utils.generateRandom10();
+    // String salt1 = Utils.generateRandom10();
+    // String salt2 = Utils.generateRandom10();
 
-    expect(false, salt2 == salt1);
+    // expect(false, salt2 == salt1);
 
-    Map m = QrUtils.getInfoFromQR("02181727");
+    // Map m = QrUtils.getInfoFromQR("02181727");
   });
 }

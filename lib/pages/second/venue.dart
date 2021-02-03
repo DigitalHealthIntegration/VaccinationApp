@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_r1/constants.dart';
 import 'package:flutter_r1/containers/application_page.dart';
-import 'package:flutter_r1/controllers/utils.dart';
 import 'package:flutter_r1/theme.dart';
 import 'package:flutter_r1/widgets/buttons.dart';
 import 'package:flutter_r1/widgets/gradients.dart';

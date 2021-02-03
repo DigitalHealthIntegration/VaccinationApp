@@ -3,6 +3,7 @@ import 'package:flutter_r1/constants.dart';
 import 'package:flutter_r1/theme.dart';
 import 'package:flutter_r1/widgets/buttons.dart';
 
+// ignore: must_be_immutable
 class Alert extends StatelessWidget {
   final String title;
   String message;

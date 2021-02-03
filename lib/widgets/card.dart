@@ -3,22 +3,17 @@ import 'package:flutter_r1/theme.dart';
 
 class AppCard extends StatelessWidget {
   final Widget body;
-  double padding;
-  double borderRadius;
-  double elevation;
-  Color color;
+  final double padding;
+  final double borderRadius;
+  final double elevation;
+  final Color color;
 
   AppCard(
       {@required this.body,
-      this.padding,
-      this.elevation,
-      this.color,
-      this.borderRadius}) {
-    padding ??= 10;
-    color ??= AppColors.light;
-    borderRadius ??= 15.0;
-    elevation ??= 5;
-  }
+      this.padding = 10,
+      this.elevation = 5,
+      this.color = AppColors.light,
+      this.borderRadius = 15.0});
 
   @override
   Card build(BuildContext context) {

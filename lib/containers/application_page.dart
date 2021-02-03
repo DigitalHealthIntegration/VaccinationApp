@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_r1/controllers/utils.dart';
 import 'package:flutter_r1/theme.dart';
 
 class ApplicationPage extends StatelessWidget {

@@ -5,7 +5,6 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
 //import 'package:flutter_r1/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_r1/controllers/qr_utils.dart';
@@ -40,7 +39,6 @@ void main() {
 
     var encoded =
         "healthpass:SHA256\KvjzblZPVd6HQugVLd9vS3nRqAyKmOxcnUm2VfSvo9eJGRYV2hP1mYgnUM481pHBXLtUI0wYGX3DsmSHumxHQe+IMOdVWP/FTarJIJCN67YtRP6r0FMxfucbxINQOgxs5QWi+i0E1xToPsA0/EaL0FA2HFL6FMdv4i/JgRUGd/Y=@vitorpamplona.com/vaccine-certificate-qrcode-generator/pub_key?type=coupon&age=a%20b";
-    ;
     // var encoded = Uri.encodeFull(uri);
     // assert(encoded == 'http://example.org/api?foo=some%20message');
 

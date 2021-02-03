@@ -6,20 +6,16 @@ import 'package:flutter_r1/theme.dart';
 import 'package:flutter_r1/widgets/buttons.dart';
 import 'package:flutter_r1/widgets/gradients.dart';
 import 'package:flutter_r1/widgets/textinput.dart';
-import 'dart:math';
-import 'package:crypto/crypto.dart';
 import 'dart:async';
 import 'package:simple_rsa/simple_rsa.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_r1/actions.dart';
-import 'dart:convert';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_r1/store.dart';
-import 'package:flutter_r1/actions.dart';
 
+// ignore: must_be_immutable
 class Status extends StatelessWidget {
-  String pat_dose, pat_passkey;
+  String patDose, patPasskey;
 
   Future<String> getStatusQrString(String message) async {
     String privateKey, publicKey;
@@ -30,7 +26,7 @@ class Status extends StatelessWidget {
     print("signature  :: " + signature);
     print("message :: " + message);
 
-    String elemPref = "qr-coupon";
+    // String elemPref = "qr-coupon";
     String protocol = "healthpass";
     String crypto = "SHA256";
     String uri = protocol +
@@ -81,7 +77,7 @@ class Status extends StatelessWidget {
                 ),
                 TextInput(
                   onChange: (str) {
-                    pat_dose = str;
+                    patDose = str;
                   },
                   placeholder: "0, 1, 2",
                 ),
@@ -101,14 +97,14 @@ class Status extends StatelessWidget {
                 ),
                 StoreConnector<AppStore, String>(
                   onInitialBuild: (passkey) {
-                    pat_passkey = passkey;
+                    patPasskey = passkey;
                   },
                   converter: (store) => store.state.passKey,
                   builder: (context, passkey) => TextInput(
                     value: passkey,
                     readOnly: false,
                     onChange: (str) {
-                      pat_passkey = str;
+                      patPasskey = str;
                     },
                     placeholder: "User Hash",
                   ),
@@ -118,19 +114,19 @@ class Status extends StatelessWidget {
                 ),
                 Button(
                   onPressed: () async {
-                    String status_str = "";
+                    String statusStr = "";
 
-                    if (pat_dose != null && pat_dose.trim().length > 0) {
-                      status_str += ("&vaccinated=") + pat_dose;
+                    if (patDose != null && patDose.trim().length > 0) {
+                      statusStr += ("&vaccinated=") + patDose;
                     }
-                    // if(pat_passkey!= null && pat_passkey.trim().length > 0){
-                    //   status_str += ("&manuf=")+pat_passkey;
+                    // if(patPasskey!= null && patPasskey.trim().length > 0){
+                    //   statusStr += ("&manuf=")+patPasskey;
                     // }
-                    String finalString = "type=status" + status_str;
+                    String finalString = "type=status" + statusStr;
                     /* List<int> bytes = utf8.encode(finalString);
                     String hash = sha256.convert(bytes).toString();*/
-                    if (pat_passkey.length > 0)
-                      finalString += ("&vaccinee=") + pat_passkey;
+                    if (patPasskey.length > 0)
+                      finalString += ("&vaccinee=") + patPasskey;
 
                     String qrString = await getStatusQrString(finalString);
                     StoreUtils.dispatch(context,

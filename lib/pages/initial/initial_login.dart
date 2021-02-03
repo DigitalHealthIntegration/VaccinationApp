@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,13 +10,6 @@ import 'package:flutter_r1/model/user_model.dart';
 import 'package:flutter_r1/theme.dart';
 import 'package:flutter_r1/widgets/buttons.dart';
 import 'package:flutter_r1/widgets/gradients.dart';
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:crypto/crypto.dart';
-import 'dart:async';
-import 'package:simple_rsa/simple_rsa.dart';
-import 'package:http/http.dart' as http;
 
 class InitialLogin extends StatelessWidget {
   @override
