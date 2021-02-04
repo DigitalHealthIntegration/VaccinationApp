@@ -24,12 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_redux: ^0.6.0
-  percent_indicator: ^2.1.6
-  http: ^0.12.2
-  dio: ^3.0.10
-  tuple: ^1.0.3
-  encrypt: ^4.1.0
-  country_code_picker: ^1.5.0
+  http:
 
   #SharedPreferences
   shared_preferences: ^0.5.12+4
@@ -37,7 +32,6 @@ dependencies:
   #Flutter-Firebase
   firebase_core: ^0.5.0
   firebase_auth: ^0.18.1+1
-  firebase_storage: ^5.2.0
   google_sign_in: ^4.5.4
 
   #QR
